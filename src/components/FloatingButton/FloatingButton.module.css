@@ -1,0 +1,38 @@
+.floatingButton {
+  position: fixed;
+
+  right: 24px;
+  bottom: 100px;
+
+  width: 64px;
+  height: 64px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #ff9ec4,
+    #a18cff
+  );
+
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.2s ease;
+}
+
+.floatingButton:hover {
+  transform: scale(1.08);
+}
+
+.floatingButton:active {
+  transform: scale(0.95);
+}

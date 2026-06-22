@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px 20px 16px;
+
+  background-color: #f7f7fb;
+}
+
+.logo {
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: #6c63ff;
+  letter-spacing: 1px;
+}
+
+.iconButton {
+  width: 48px;
+  height: 48px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.08),
+    -6px -6px 12px rgba(255, 255, 255, 0.9);
+}
+
+.iconButton:hover {
+  transform: scale(1.05);
+}
