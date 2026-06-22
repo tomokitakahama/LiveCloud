@@ -1,0 +1,39 @@
+.home {
+  max-width: 430px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 24px 20px 100px;
+
+  background: linear-gradient(
+    180deg,
+    #f8f7ff 0%,
+    #ffffff 100%
+  );
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+}
+
+.artistSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 28px 0 20px;
+}
+
+.artistSectionHeader h2 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #222;
+}
+
+.artistSectionHeader span {
+  color: #6f5cff;
+
+  font-size: 14px;
+  font-weight: 600;
+}

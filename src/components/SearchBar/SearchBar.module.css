@@ -3,21 +3,28 @@
   align-items: center;
   gap: 12px;
 
-  margin: 20px;
-  padding: 14px 18px;
+  width: 100%;
 
-  background: white;
-  border-radius: 20px;
+  padding: 16px 20px;
+  margin: 20px 0;
 
-  box-shadow:
-    0 4px 12px rgba(0,0,0,0.08);
+  background: #f4f4fa;
+  border-radius: 999px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .input {
   width: 100%;
 
   border: none;
-  outline: none;
+  background: transparent;
 
-  font-size: 1rem;
+  font-size: 15px;
+}
+
+.input:focus {
+  outline: none;
 }

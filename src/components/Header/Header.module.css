@@ -1,11 +1,9 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
-  padding: 24px 20px 16px;
-
-  background-color: #f7f7fb;
+  margin-bottom: 24px;
 }
 
 .logo {
@@ -14,11 +12,20 @@
   font-size: 2rem;
   font-weight: 700;
 
-  color: #6c63ff;
-  letter-spacing: 1px;
+  background: linear-gradient(135deg, #7b61ff, #5ac8fa);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.iconButton {
+.subtitle {
+  margin-top: 8px;
+
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.notificationButton {
   width: 48px;
   height: 48px;
 
@@ -33,11 +40,7 @@
 
   cursor: pointer;
 
-  box-shadow:
-    6px 6px 12px rgba(0, 0, 0, 0.08),
-    -6px -6px 12px rgba(255, 255, 255, 0.9);
-}
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-.iconButton:hover {
-  transform: scale(1.05);
+  color: #7b61ff;
 }

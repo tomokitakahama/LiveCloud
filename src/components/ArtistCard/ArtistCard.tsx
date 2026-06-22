@@ -1,25 +1,36 @@
 import styles from "./ArtistCard.module.css";
+import { ChevronRight } from "lucide-react";
 
-type ArtistCardProps = {
+export interface ArtistCardProps {
   name: string;
   liveCount: number;
   lastLiveDate: string;
-};
+  image: string;
+}
 
 const ArtistCard = ({
   name,
   liveCount,
   lastLiveDate,
+  image,
 }: ArtistCardProps) => {
   return (
     <div className={styles.card}>
-      <div className={styles.image}></div>
+      <img
+        src={image}
+        alt={name}
+        className={styles.artistImage}
+      />
 
-      <h3>{name}</h3>
+      <div className={styles.info}>
+        <h3>{name}</h3>
 
-      <p>ライブ {liveCount}回</p>
+        <p>ライブ参戦 {liveCount}回</p>
 
-      <p>最終参戦 {lastLiveDate}</p>
+        <p>最終参戦 {lastLiveDate}</p>
+      </div>
+
+      <ChevronRight className={styles.arrow} />
     </div>
   );
 };

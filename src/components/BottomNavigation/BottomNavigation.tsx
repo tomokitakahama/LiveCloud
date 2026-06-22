@@ -2,7 +2,8 @@ import styles from "./BottomNavigation.module.css";
 import {
   House,
   ChartPie,
-  UserPlus
+  CirclePlus,
+  Settings
 } from "lucide-react";
 
 const BottomNavigation = () => {
@@ -10,7 +11,7 @@ const BottomNavigation = () => {
     <nav className={styles.navigation}>
       <button className={styles.navItem}>
         <House size={24} />
-        <span>Home</span>
+        <span>ホーム</span>
       </button>
 
       <button className={styles.navItem}>
@@ -19,8 +20,13 @@ const BottomNavigation = () => {
       </button>
 
       <button className={styles.navItem}>
-        <UserPlus size={24} />
+        <CirclePlus size={24} />
         <span>追加</span>
+      </button>
+
+      <button className={styles.navItem}>
+        <Settings size={24} />
+        <span>設定</span>
       </button>
     </nav>
   );

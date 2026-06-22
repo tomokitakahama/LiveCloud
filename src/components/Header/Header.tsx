@@ -4,9 +4,15 @@ import { Bell } from "lucide-react";
 const Header = () => {
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>LiveCloud</h1>
+      <div>
+        <h1 className={styles.logo}>LiveCloud</h1>
 
-      <button className={styles.iconButton}>
+        <p className={styles.subtitle}>
+          ライブの思い出を、ずっとそばに。
+        </p>
+      </div>
+
+      <button className={styles.notificationButton}>
         <Bell size={22} />
       </button>
     </header>
