@@ -1,5 +1,6 @@
 import styles from "./ArtistCard.module.css";
 import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type ArtistCardProps = {
   name: string;
@@ -14,8 +15,16 @@ const ArtistCard = ({
   lastLiveDate,
   image,
 }: ArtistCardProps) => {
+
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() =>
+        navigate(`/artist/${name.toLowerCase()}`)
+      }
+    >
       <img
         src={image}
         alt={name}

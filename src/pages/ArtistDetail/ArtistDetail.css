@@ -1,0 +1,83 @@
+.detailContainer {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #6c63ff 0%,
+      #9d7dff 30%,
+      #f8f8fc 30%
+    );
+
+  padding: 24px;
+}
+
+.backButton {
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.heroArea {
+  margin-top: 40px;
+
+  color: white;
+}
+
+.heroArea h1 {
+  margin: 0;
+
+  font-size: 2rem;
+}
+
+.heroArea p {
+  opacity: 0.9;
+}
+
+.contentCard {
+  margin-top: 40px;
+
+  background: white;
+
+  border-radius: 32px;
+
+  padding: 24px;
+
+  min-height: 500px;
+}
+
+.tabArea {
+  display: flex;
+
+  justify-content: space-around;
+
+  margin-bottom: 32px;
+}
+
+.tabArea button {
+  border: none;
+  background: transparent;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+}
+
+.activeTab {
+  color: #6c63ff;
+
+  font-weight: bold;
+}
+
+.liveItem {
+  padding: 20px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.liveItem h3 {
+  margin-bottom: 8px;
+}
