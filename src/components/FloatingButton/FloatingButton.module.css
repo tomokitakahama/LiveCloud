@@ -1,7 +1,9 @@
-.floatingButton {
+.button {
   position: fixed;
 
-  right: 24px;
+  left: 50%;
+  transform: translateX(110px);
+
   bottom: 100px;
 
   width: 64px;
@@ -12,8 +14,8 @@
 
   background: linear-gradient(
     135deg,
-    #ff9ec4,
-    #a18cff
+    #8b5cf6,
+    #6c63ff
   );
 
   color: white;
@@ -24,15 +26,7 @@
 
   cursor: pointer;
 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.4);
 
-  transition: all 0.2s ease;
-}
-
-.floatingButton:hover {
-  transform: scale(1.08);
-}
-
-.floatingButton:active {
-  transform: scale(0.95);
+  z-index: 999;
 }

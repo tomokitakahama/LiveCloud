@@ -2,6 +2,7 @@ import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
+import FloatingButton from "../../components/FloatingButton/FloatingButton";
 
 import "./Home.css";
 
@@ -49,6 +50,8 @@ const Home = () => {
         lastLiveDate="2025/08/10"
         image={clanqueen}
       />
+
+      <FloatingButton />
 
       <BottomNavigation />
     </div>
