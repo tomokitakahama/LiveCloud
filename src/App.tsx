@@ -1,4 +1,5 @@
 import type { Artist } from "./types/artist";
+import Stats from "./pages/Stats/Stats";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -111,6 +112,15 @@ useEffect(() => {
             />
           }
         />
+
+        <Route
+  path="/stats"
+  element={
+    <Stats
+      artists={artists}
+    />
+  }
+/>
 
       </Routes>
 

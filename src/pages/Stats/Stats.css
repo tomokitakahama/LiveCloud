@@ -1,0 +1,77 @@
+.statsContainer {
+  padding: 24px;
+}
+
+.statsContainer h1 {
+  margin-bottom: 24px;
+}
+
+.statsCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.statsCard h2 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.statsCard p {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.statsCard span {
+  color: #666;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.statsCard {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.statsCard h2 {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.statsCard p {
+  font-size: 42px;
+  font-weight: bold;
+  color: #7c4dff;
+}
+
+.statsCard span {
+  color: #999;
+  font-size: 13px;
+}
+
+.chartCard {
+  background: white;
+  margin-top: 24px;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.chartCard h2 {
+  margin-bottom: 20px;
+}
+
+.pieChartArea {
+  width: 100%;
+  height: 250px;
+}

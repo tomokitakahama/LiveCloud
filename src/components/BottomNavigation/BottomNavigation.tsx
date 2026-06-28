@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./BottomNavigation.module.css";
 import {
   House,
@@ -7,19 +8,32 @@ import {
 } from "lucide-react";
 
 const BottomNavigation = () => {
+
+  const navigate = useNavigate();
+
   return (
     <nav className={styles.navigation}>
-      <button className={styles.navItem}>
+
+      <button
+        className={styles.navItem}
+        onClick={() => navigate("/")}
+      >
         <House size={24} />
         <span>ホーム</span>
       </button>
 
-      <button className={styles.navItem}>
+      <button
+        className={styles.navItem}
+        onClick={() => navigate("/stats")}
+      >
         <ChartPie size={24} />
         <span>統計</span>
       </button>
 
-      <button className={styles.navItem}>
+      <button
+        className={styles.navItem}
+        onClick={() => navigate("/add-artist")}
+      >
         <CirclePlus size={24} />
         <span>追加</span>
       </button>
@@ -28,6 +42,7 @@ const BottomNavigation = () => {
         <Settings size={24} />
         <span>設定</span>
       </button>
+
     </nav>
   );
 };
