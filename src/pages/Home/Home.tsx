@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
@@ -21,11 +22,24 @@ const Home = ({
   setArtists,
 }: HomeProps) => {
 
+  const [searchText, setSearchText] =
+  useState("");
+
+  const filteredArtists = artists.filter(
+  (artist) =>
+    artist.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase())
+);
+
   return (
     <div className="container">
       <Header />
 
-      <SearchBar />
+      <SearchBar
+  value={searchText}
+  onChange={setSearchText}
+/>
 
       <div className="titleArea">
         <button
@@ -47,7 +61,7 @@ const Home = ({
         <span>{artists.length}組</span>
       </div>
 
-      {artists.map((artist) => (
+      {filteredArtists.map((artist) => (
         <ArtistCard
           key={artist.name}
           name={artist.name}

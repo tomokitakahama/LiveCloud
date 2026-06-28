@@ -1,15 +1,26 @@
 import styles from "./SearchBar.module.css";
 import { Search } from "lucide-react";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+const SearchBar = ({
+  value,
+  onChange,
+}: SearchBarProps) => {
   return (
-    <div className={styles.searchContainer}>
+    <div className={styles.searchBar}>
       <Search size={20} />
 
       <input
         type="text"
         placeholder="アーティストを検索"
-        className={styles.input}
+        value={value}
+        onChange={(e) =>
+          onChange(e.target.value)
+        }
       />
     </div>
   );

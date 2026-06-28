@@ -1,3 +1,4 @@
+import type { Artist } from "./types/artist";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,40 +14,60 @@ import clanqueen from "./assets/images/clanqueen.jpg";
 function App() {
 
   const initialArtists = [
+    {
+      name: "YOASOBI",
+      liveCount: 12,
+      lastLiveDate: "2026/05/01",
+      image: yoasobi,
+
+      lives: [
+        {
+          title: "YOASOBI DOME LIVE 2026",
+          date: "2026/05/01",
+          venue: "東京ドーム",
+        },
+        {
+          title: "YOASOBI ARENA TOUR 2025",
+          date: "2025/12/10",
+          venue: "有明アリーナ",
+        },
+      ],
+    },
+{
+  name: "Vaundy",
+  liveCount: 5,
+  lastLiveDate: "2025/12/15",
+  image: vaundy,
+
+  lives: [],
+},
   {
-    name: "YOASOBI",
-    liveCount: 12,
-    lastLiveDate: "2026/05/01",
-    image: yoasobi,
-  },
+  name: "ヨルシカ",
+  liveCount: 8,
+  lastLiveDate: "2025/11/20",
+  image: yorushika,
+
+  lives: [],
+},
   {
-    name: "Vaundy",
-    liveCount: 5,
-    lastLiveDate: "2025/12/15",
-    image: vaundy,
-  },
-  {
-    name: "ヨルシカ",
-    liveCount: 8,
-    lastLiveDate: "2025/11/20",
-    image: yorushika,
-  },
-  {
-    name: "CLAN QUEEN",
-    liveCount: 3,
-    lastLiveDate: "2025/08/10",
-    image: clanqueen,
-  },
+  name: "CLAN QUEEN",
+  liveCount: 3,
+  lastLiveDate: "2025/08/10",
+  image: clanqueen,
+
+  lives: [],
+},
 ];
 
-const [artists, setArtists] = useState(() => {
+const [artists, setArtists] =
+  useState<Artist[]>(() => {
 
-  const savedArtists =
-    localStorage.getItem("artists");
+    const savedArtists =
+      localStorage.getItem("artists");
 
-  return savedArtists
-    ? JSON.parse(savedArtists)
-    : initialArtists;
+    return savedArtists
+      ? JSON.parse(savedArtists)
+      : initialArtists;
 });
 
 useEffect(() => {
@@ -71,10 +92,15 @@ useEffect(() => {
           }
         />
 
-        <Route
-          path="/artist/:artistId"
-          element={<ArtistDetail />}
-        />
+       <Route
+  path="/artist/:artistId"
+  element={
+    <ArtistDetail
+      artists={artists}
+      setArtists={setArtists}
+    />
+  }
+/>
 
         <Route
           path="/add-artist"

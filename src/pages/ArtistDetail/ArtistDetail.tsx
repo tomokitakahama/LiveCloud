@@ -4,40 +4,127 @@ import {
   useParams,
   useNavigate,
 } from "react-router-dom";
+import { useState } from "react";
 
-const ArtistDetail = () => {
+type ArtistDetailProps = {
+  artists: any[];
+  setArtists: React.Dispatch<
+    React.SetStateAction<any[]>
+  >;
+};
+
+const ArtistDetail = ({
+  artists,
+  setArtists,
+}: ArtistDetailProps) => {
 
   // URLから artistId を取得
   const { artistId } = useParams();
 
   const navigate = useNavigate();
 
-  // アーティストデータ（今はモック）
-  const artists = {
-    yoasobi: {
-      name: "YOASOBI",
-      liveCount: 12,
-    },
+  const [showForm, setShowForm] =
+  useState(false);
 
-    vaundy: {
-      name: "Vaundy",
-      liveCount: 5,
-    },
+const [liveTitle, setLiveTitle] =
+  useState("");
 
-    yorushika: {
-      name: "ヨルシカ",
-      liveCount: 8,
-    },
+const [liveDate, setLiveDate] =
+  useState("");
 
-    clanqueen: {
-      name: "CLAN QUEEN",
-      liveCount: 3,
-    },
-  };
+const [liveVenue, setLiveVenue] =
+  useState("");
 
   // URLに応じたアーティスト情報を取得
-  const artist =
-    artists[artistId as keyof typeof artists];
+  const artist = artists.find(
+  (artist) =>
+    artist.name.toLowerCase() === artistId
+);
+
+
+const handleAddLive = () => {
+
+  if (
+    !liveTitle ||
+    !liveDate ||
+    !liveVenue
+  ) {
+    alert("すべて入力してください");
+    return;
+  }
+
+  const updatedArtists =
+    artists.map((item) => {
+
+      if (item.name.toLowerCase() === artistId) {
+
+        return {
+          ...item,
+
+          lives: [
+            {
+              title: liveTitle,
+              date: liveDate,
+              venue: liveVenue,
+            },
+
+            ...item.lives,
+          ],
+
+          liveCount: item.liveCount + 1,
+          lastLiveDate: liveDate,
+        };
+      }
+
+      return item;
+    });
+
+  setArtists(updatedArtists);
+
+  setLiveTitle("");
+  setLiveDate("");
+  setLiveVenue("");
+
+  setShowForm(false);
+};
+
+const handleDeleteLive = (
+  deleteIndex: number
+) => {
+
+  const result = window.confirm(
+    "このライブ履歴を削除しますか？"
+  );
+
+  if (!result) return;
+
+  const updatedArtists =
+    artists.map((item) => {
+
+      if (
+        item.name.toLowerCase() === artistId
+      ) {
+
+        return {
+          ...item,
+
+          lives: item.lives.filter(
+            (_live, index) =>
+              index !== deleteIndex
+          ),
+
+          liveCount:
+            item.liveCount > 0
+              ? item.liveCount - 1
+              : 0,
+        };
+      }
+
+      return item;
+    });
+
+  setArtists(updatedArtists);
+};
 
   return (
   <div className="detailContainer">
@@ -54,6 +141,30 @@ const ArtistDetail = () => {
       <h1>{artist?.name}</h1>
 
       <p>
+        <button
+  className="deleteArtistButton"
+  onClick={() => {
+
+    const result = window.confirm(
+      `${artist.name}を削除しますか？`
+    );
+
+    if (!result) return;
+
+    const updatedArtists =
+      artists.filter(
+        (item) =>
+          item.name !== artist.name
+      );
+
+    setArtists(updatedArtists);
+
+    navigate("/");
+  }}
+>
+  アーティストを削除
+</button>
+
         ライブ参戦 {artist?.liveCount}回
       </p>
 
@@ -73,15 +184,83 @@ const ArtistDetail = () => {
 
       </div>
 
-      <div className="liveItem">
-        <h3>YOASOBI DOME LIVE 2026</h3>
-        <p>2026/05/01 東京ドーム</p>
-      </div>
+      <button
+  className="addLiveButton"
+  onClick={() =>
+    setShowForm(!showForm)
+  }
+>
+  ＋ ライブ追加
+</button>
 
-      <div className="liveItem">
-        <h3>YOASOBI ARENA TOUR 2025</h3>
-        <p>2025/12/10 有明アリーナ</p>
-      </div>
+{showForm && (
+
+  <div className="liveForm">
+
+    <input
+      type="text"
+      placeholder="ライブ名"
+      value={liveTitle}
+      onChange={(e) =>
+        setLiveTitle(e.target.value)
+      }
+    />
+
+    <input
+      type="date"
+      value={liveDate}
+      onChange={(e) =>
+        setLiveDate(e.target.value)
+      }
+    />
+
+    <input
+      type="text"
+      placeholder="会場"
+      value={liveVenue}
+      onChange={(e) =>
+        setLiveVenue(e.target.value)
+      }
+    />
+
+    <button
+      className="saveLiveButton"
+      onClick={handleAddLive}
+    >
+      保存
+    </button>
+
+  </div>
+
+)}
+
+    {artist?.lives?.length ? (
+  artist.lives?.map((live, index) => (
+    <div
+  className="liveItem"
+  key={index}
+>
+  <h3>{live.title}</h3>
+
+  <p>
+    {live.date} {live.venue}
+  </p>
+
+  <button
+    className="deleteLiveButton"
+    onClick={() =>
+      handleDeleteLive(index)
+    }
+  >
+    削除
+  </button>
+</div>
+  ))
+) : (
+  <div className="liveItem">
+    <h3>ライブ履歴がありません</h3>
+  </div>
+)}
 
     </div>
 

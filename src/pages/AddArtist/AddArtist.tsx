@@ -18,6 +18,9 @@ const AddArtist = ({
   const [artistName, setArtistName] =
     useState("");
 
+  const [image, setImage] =
+    useState("");
+
   const handleSave = () => {
 
     if (!artistName.trim()) {
@@ -25,15 +28,16 @@ const AddArtist = ({
       return;
     }
 
-    setArtists([
-      ...artists,
-      {
-        name: artistName,
-        liveCount: 0,
-        lastLiveDate: "未参戦",
-        image: "/src/assets/images/yoasobi.jpg",
-      },
-    ]);
+   setArtists([
+  ...artists,
+  {
+    name: artistName,
+    liveCount: 0,
+    lastLiveDate: "未参戦",
+    image: image || "/src/assets/images/yoasobi.jpg",
+    lives: [],
+  },
+]);
 
     navigate("/");
   };
@@ -65,7 +69,21 @@ const AddArtist = ({
 
         <label>画像</label>
 
-        <input type="file" />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+
+        const file = e.target.files?.[0];
+
+        if (!file) return;
+
+        const imageUrl =
+          URL.createObjectURL(file);
+
+          setImage(imageUrl);
+        }}
+        />
 
         <label>メモ</label>
 
