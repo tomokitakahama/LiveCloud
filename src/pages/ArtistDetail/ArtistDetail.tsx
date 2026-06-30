@@ -63,10 +63,13 @@ const handleAddLive = () => {
 
           lives: [
             {
-              title: liveTitle,
-              date: liveDate,
-              venue: liveVenue,
-            },
+  title: liveTitle,
+  date: liveDate,
+  venue: liveVenue,
+  rating: 0,
+  memo: "",
+  photos: [],
+},
 
             ...item.lives,
           ],
@@ -239,7 +242,13 @@ const handleDeleteLive = (
     <div
   className="liveItem"
   key={index}
+  onClick={() =>
+    navigate(
+      `/live/${artistId}/${index}`
+    )
+  }
 >
+
   <h3>{live.title}</h3>
 
   <p>

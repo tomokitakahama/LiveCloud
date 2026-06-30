@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ArtistDetail from "./pages/ArtistDetail/ArtistDetail";
 import AddArtist from "./pages/AddArtist/AddArtist";
+import LiveDetail from "./pages/LiveDetail/LiveDetail";
 
 import yoasobi from "./assets/images/yoasobi.jpg";
 import vaundy from "./assets/images/vaundy.jpg";
@@ -23,15 +24,19 @@ function App() {
 
       lives: [
         {
-          title: "YOASOBI DOME LIVE 2026",
-          date: "2026/05/01",
-          venue: "東京ドーム",
-        },
+  title: "YOASOBI DOME LIVE 2026",
+  date: "2026/05/01",
+  venue: "東京ドーム",
+  rating: 5,
+  photos: [],
+},
         {
-          title: "YOASOBI ARENA TOUR 2025",
-          date: "2025/12/10",
-          venue: "有明アリーナ",
-        },
+  title: "YOASOBI ARENA TOUR 2025",
+  date: "2025/12/10",
+  venue: "有明アリーナ",
+  rating: 4,
+  photos: [],
+},
       ],
     },
 {
@@ -119,6 +124,16 @@ useEffect(() => {
     <Stats
       artists={artists}
     />
+  }
+/>
+
+<Route
+  path="/live/:artistId/:liveId"
+  element={
+    <LiveDetail
+  artists={artists}
+  setArtists={setArtists}
+/>
   }
 />
 
