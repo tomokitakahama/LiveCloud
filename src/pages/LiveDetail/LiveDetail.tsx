@@ -31,18 +31,6 @@ const LiveDetail = ({
 const live =
   artist?.lives[Number(liveId)];
 
-  const [memo, setMemo] =
-  useState(live?.memo || "");
-
-  const [title, setTitle] =
-  useState(live?.title || "");
-
-const [date, setDate] =
-  useState(live?.date || "");
-
-const [venue, setVenue] =
-  useState(live?.venue || "");
-
   const handleRating = (
   rating: number
 ) => {
@@ -81,54 +69,6 @@ const [venue, setVenue] =
   setArtists(updatedArtists);
 };
 
-const handleSaveMemo = () => {
-
-  const updatedArtists =
-    artists.map((item) => {
-
-      if (
-        item.name.toLowerCase() !== artistId
-      ) {
-        return item;
-      }
-
-      return {
-
-        ...item,
-
-        lives: item.lives.map(
-          (liveItem, index) => {
-
-            if (
-              index !== Number(liveId)
-            ) {
-              return liveItem;
-            }
-
-            return {
-  ...liveItem,
-
-  title,
-
-  date,
-
-  venue,
-
-  memo,
-
-  rating: live?.rating ?? 0,
-};
-          }
-        ),
-
-      };
-    });
-
-  setArtists(updatedArtists);
-
-  alert("保存しました！");
-};
-
   return (
 
     <div className="liveDetailContainer">
@@ -144,29 +84,13 @@ const handleSaveMemo = () => {
 
       <div className="liveCard">
 
-        <h3>ライブ名</h3>
-
-<input
-  type="text"
-  value={title}
-  onChange={(e) =>
-    setTitle(e.target.value)
-  }
-/>
+        <h2>{live?.title}</h2>
 
 <div className="ratingArea">
 
   {Array.from({ length: 5 }).map((_, index) => (
 
-    <span
-      key={index}
-      onClick={() =>
-        handleRating(index + 1)
-      }
-      style={{
-        cursor: "pointer",
-      }}
-    >
+    <span key={index}>
       {index < (live?.rating ?? 0)
         ? "⭐"
         : "☆"}
@@ -176,41 +100,20 @@ const handleSaveMemo = () => {
 
 </div>
 
-<h3>開催日</h3>
+<p>{live?.date}</p>
 
-<input
-  type="date"
-  value={date}
-  onChange={(e) =>
-    setDate(e.target.value)
-  }
-/>
+<p>{live?.venue}</p>
 
-<h3>会場</h3>
+<h3>感想</h3>
 
-<input
-  type="text"
-  value={venue}
-  onChange={(e) =>
-    setVenue(e.target.value)
-  }
-/>
-
-<h3>感想メモ</h3>
-
-<textarea
-  value={memo}
-  onChange={(e) =>
-    setMemo(e.target.value)
-  }
-  placeholder="ライブの感想を書こう"
-/>
+<p>
+  {live?.memo || "感想はありません"}
+</p>
 
 <button
-  className="saveMemoButton"
-  onClick={handleSaveMemo}
+  className="editButton"
 >
-  メモを保存
+  編集する
 </button>
 
       </div>
