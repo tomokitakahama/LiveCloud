@@ -111,3 +111,31 @@ textarea{
   cursor:pointer;
 
 }
+
+.photoArea{
+
+  display:flex;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-top:16px;
+
+}
+
+.livePhoto{
+
+  width:140px;
+
+  height:140px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+
+}

@@ -110,8 +110,38 @@ const live =
   {live?.memo || "感想はありません"}
 </p>
 
+<h3>ライブ写真</h3>
+
+<div className="photoArea">
+
+  {live?.photos?.length ? (
+
+    live.photos.map((photo, index) => (
+
+      <img
+        key={index}
+        src={photo}
+        alt={`photo-${index}`}
+        className="livePhoto"
+      />
+
+    ))
+
+  ) : (
+
+    <p>写真はありません</p>
+
+  )}
+
+</div>
+
 <button
   className="editButton"
+  onClick={() =>
+    navigate(
+      `/artist/${artistId}/live/${liveId}/edit`
+    )
+  }
 >
   編集する
 </button>

@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import ArtistDetail from "./pages/ArtistDetail/ArtistDetail";
 import AddArtist from "./pages/AddArtist/AddArtist";
 import LiveDetail from "./pages/LiveDetail/LiveDetail";
+import EditLive from "./pages/EditLive/EditLive";
 
 import yoasobi from "./assets/images/yoasobi.jpg";
 import vaundy from "./assets/images/vaundy.jpg";
@@ -134,6 +135,16 @@ useEffect(() => {
   artists={artists}
   setArtists={setArtists}
 />
+  }
+/>
+
+<Route
+  path="/artist/:artistId/live/:liveId/edit"
+  element={
+    <EditLive
+      artists={artists}
+      setArtists={setArtists}
+    />
   }
 />
 
