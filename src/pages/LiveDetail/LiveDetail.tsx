@@ -86,6 +86,40 @@ const live =
 
         <h2>{live?.title}</h2>
 
+        <div className="infoCard">
+
+  <div className="infoRow">
+    <span>ライブ種別</span>
+    <strong>{live?.liveType}</strong>
+  </div>
+
+  <div className="infoRow">
+    <span>開催日</span>
+    <strong>{live?.date}</strong>
+  </div>
+
+  <div className="infoRow">
+    <span>会場</span>
+    <strong>{live?.venue}</strong>
+  </div>
+
+  <div className="infoRow">
+    <span>開場</span>
+    <strong>{live?.openTime}</strong>
+  </div>
+
+  <div className="infoRow">
+    <span>開演</span>
+    <strong>{live?.startTime}</strong>
+  </div>
+
+  <div className="infoRow">
+    <span>座席</span>
+    <strong>{live?.seat || "未登録"}</strong>
+  </div>
+
+</div>
+
 <div className="ratingArea">
 
   {Array.from({ length: 5 }).map((_, index) => (
@@ -111,6 +145,37 @@ const live =
 </p>
 
 <h3>ライブ写真</h3>
+
+<h3>セットリスト</h3>
+
+<div className="setlistArea">
+
+  {live?.setlist?.length ? (
+
+    live.setlist.map((song, index) => (
+
+      <div
+        key={index}
+        className="setlistItem"
+      >
+
+        <span className="songNumber">
+          {index + 1}
+        </span>
+
+        <span>{song}</span>
+
+      </div>
+
+    ))
+
+  ) : (
+
+    <p>セットリストはありません</p>
+
+  )}
+
+</div>
 
 <div className="photoArea">
 

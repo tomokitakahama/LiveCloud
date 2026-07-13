@@ -139,3 +139,91 @@ textarea{
   box-shadow:0 2px 8px rgba(0,0,0,.15);
 
 }
+
+.setlistArea {
+
+  margin-top: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+}
+
+.setlistItem {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 12px 16px;
+
+  background: #fff;
+
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.songNumber {
+
+  width: 28px;
+
+  font-weight: bold;
+
+  color: #7c4dff;
+
+  text-align: center;
+
+}
+
+.infoCard {
+
+  margin: 20px 0;
+
+  padding: 18px;
+
+  background: #fff;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.infoRow {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eee;
+
+}
+
+.infoRow:last-child {
+
+  border-bottom: none;
+
+}
+
+.infoRow span {
+
+  color: #777;
+
+}
+
+.infoRow strong {
+
+  color: #333;
+
+}

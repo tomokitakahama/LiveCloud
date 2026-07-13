@@ -8,6 +8,7 @@ import ArtistDetail from "./pages/ArtistDetail/ArtistDetail";
 import AddArtist from "./pages/AddArtist/AddArtist";
 import LiveDetail from "./pages/LiveDetail/LiveDetail";
 import EditLive from "./pages/EditLive/EditLive";
+import AddLiveBasic from "./pages/AddLiveBasic/AddLiveBasic";
 
 import yoasobi from "./assets/images/yoasobi.jpg";
 import vaundy from "./assets/images/vaundy.jpg";
@@ -28,7 +29,21 @@ function App() {
   title: "YOASOBI DOME LIVE 2026",
   date: "2026/05/01",
   venue: "東京ドーム",
+
+  liveType: "ワンマン",
+
+  openTime: "18:00",
+
+  startTime: "19:00",
+
+  seat: "",
+
   rating: 5,
+
+  memo: "",
+
+  setlist: [],
+
   photos: [],
 },
         {
@@ -148,6 +163,15 @@ useEffect(() => {
   }
 />
 
+<Route
+  path="/artist/:artistId/add-live"
+  element={
+    <AddLiveBasic
+      artists={artists}
+      setArtists={setArtists}
+    />
+  }
+/>
       </Routes>
 
     </BrowserRouter>

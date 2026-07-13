@@ -1,0 +1,16 @@
+.saveButton {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #7c5cff;
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}

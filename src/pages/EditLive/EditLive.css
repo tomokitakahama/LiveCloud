@@ -52,3 +52,87 @@
   cursor:pointer;
 
 }
+
+.setlistArea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+.songRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 12px 16px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.songNumber {
+  width: 28px;
+
+  color: #7c4dff;
+
+  font-weight: bold;
+
+  text-align: center;
+}
+
+.songRow input {
+  flex: 1;
+
+  border: none;
+
+  outline: none;
+
+  font-size: 15px;
+
+  background: transparent;
+}
+
+.deleteSongButton {
+  border: none;
+
+  background: transparent;
+
+  color: #999;
+
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+.deleteSongButton:hover {
+  color: #ff4d4f;
+}
+
+.addSongButton {
+  margin-top: 8px;
+
+  padding: 12px;
+
+  border: 2px dashed #7c4dff;
+
+  background: white;
+
+  color: #7c4dff;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: .2s;
+}
+
+.addSongButton:hover {
+  background: #f4eeff;
+}

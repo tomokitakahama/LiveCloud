@@ -1,11 +1,15 @@
-export type Live = {
+type Live = {
   title: string;
   date: string;
   venue: string;
-
-  rating?: number;
-  memo?: string;
-  photos?: string[];
+  openTime: string;
+  startTime: string;
+  liveType: string;
+  seat: string;
+  rating: number;
+  memo: string;
+  photos: string[];
+  setlist: string[];
 };
 
 export type Artist = {

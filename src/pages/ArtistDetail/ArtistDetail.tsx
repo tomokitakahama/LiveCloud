@@ -23,73 +23,11 @@ const ArtistDetail = ({
 
   const navigate = useNavigate();
 
-  const [showForm, setShowForm] =
-  useState(false);
-
-const [liveTitle, setLiveTitle] =
-  useState("");
-
-const [liveDate, setLiveDate] =
-  useState("");
-
-const [liveVenue, setLiveVenue] =
-  useState("");
-
   // URLに応じたアーティスト情報を取得
   const artist = artists.find(
   (artist) =>
     artist.name.toLowerCase() === artistId
 );
-
-
-const handleAddLive = () => {
-
-  if (
-    !liveTitle ||
-    !liveDate ||
-    !liveVenue
-  ) {
-    alert("すべて入力してください");
-    return;
-  }
-
-  const updatedArtists =
-    artists.map((item) => {
-
-      if (item.name.toLowerCase() === artistId) {
-
-        return {
-          ...item,
-
-          lives: [
-            {
-  title: liveTitle,
-  date: liveDate,
-  venue: liveVenue,
-  rating: 0,
-  memo: "",
-  photos: [],
-},
-
-            ...item.lives,
-          ],
-
-          liveCount: item.liveCount + 1,
-          lastLiveDate: liveDate,
-        };
-      }
-
-      return item;
-    });
-
-  setArtists(updatedArtists);
-
-  setLiveTitle("");
-  setLiveDate("");
-  setLiveVenue("");
-
-  setShowForm(false);
-};
 
 const handleDeleteLive = (
   deleteIndex: number
@@ -187,55 +125,16 @@ const handleDeleteLive = (
 
       </div>
 
-      <button
+  <button
   className="addLiveButton"
   onClick={() =>
-    setShowForm(!showForm)
+    navigate(
+      `/artist/${artistId}/add-live`
+    )
   }
 >
   ＋ ライブ追加
 </button>
-
-{showForm && (
-
-  <div className="liveForm">
-
-    <input
-      type="text"
-      placeholder="ライブ名"
-      value={liveTitle}
-      onChange={(e) =>
-        setLiveTitle(e.target.value)
-      }
-    />
-
-    <input
-      type="date"
-      value={liveDate}
-      onChange={(e) =>
-        setLiveDate(e.target.value)
-      }
-    />
-
-    <input
-      type="text"
-      placeholder="会場"
-      value={liveVenue}
-      onChange={(e) =>
-        setLiveVenue(e.target.value)
-      }
-    />
-
-    <button
-      className="saveLiveButton"
-      onClick={handleAddLive}
-    >
-      保存
-    </button>
-
-  </div>
-
-)}
 
     {artist?.lives?.length ? (
   artist.lives?.map((live, index) => (

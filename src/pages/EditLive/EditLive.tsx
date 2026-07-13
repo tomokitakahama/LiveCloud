@@ -51,6 +51,45 @@ const EditLive = ({
     const [photos, setPhotos] =
   useState<File[]>([]);
 
+  const [setlist, setSetlist] = useState<string[]>(
+  live?.setlist || []
+);
+
+const handleSetlistChange = (
+  index: number,
+  value: string
+) => {
+
+  const updated = [...setlist];
+
+  updated[index] = value;
+
+  setSetlist(updated);
+
+};
+
+const handleAddSong = () => {
+
+  setSetlist([
+    ...setlist,
+    "",
+  ]);
+
+};
+
+const handleDeleteSong = (
+  index: number
+) => {
+
+  const updated =
+    setlist.filter(
+      (_, i) => i !== index
+    );
+
+  setSetlist(updated);
+
+};
+
     const handleSave = async () => {
 
   const photoPromises = photos.map((photo) => {
@@ -110,6 +149,8 @@ const photoData = await Promise.all(
               memo,
 
               rating,
+
+              setlist,
 
               photos:
   photoData.length > 0
@@ -203,6 +244,55 @@ const photoData = await Promise.all(
         ))}
 
       </div>
+
+      <h3>セットリスト</h3>
+
+<div className="setlistArea">
+
+  {setlist.map((song, index) => (
+
+    <div
+      className="songRow"
+      key={index}
+    >
+
+      <span className="songNumber">
+        {index + 1}
+      </span>
+
+      <input
+        type="text"
+        placeholder="曲名"
+        value={song}
+        onChange={(e) =>
+          handleSetlistChange(
+            index,
+            e.target.value
+          )
+        }
+      />
+
+      <button
+        className="deleteSongButton"
+        onClick={() =>
+          handleDeleteSong(index)
+        }
+      >
+        ×
+      </button>
+
+    </div>
+
+  ))}
+
+  <button
+    className="addSongButton"
+    onClick={handleAddSong}
+  >
+    ＋ 曲を追加
+  </button>
+
+</div>
 
       <h3>感想</h3>
 
