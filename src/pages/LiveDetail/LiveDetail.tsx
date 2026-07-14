@@ -150,30 +150,54 @@ const live =
 
 <div className="setlistArea">
 
-  {live?.setlist?.length ? (
+  {live?.setlist?.map((item: any, index: number) => (
 
-    live.setlist.map((song, index) => (
+  <div key={index}>
 
-      <div
-        key={index}
-        className="setlistItem"
-      >
+    {item.type === "song" && (
+
+      <div className="setlistItem">
 
         <span className="songNumber">
-          {index + 1}
+
+          {
+            live.setlist
+              .slice(0, index + 1)
+              .filter((i: any) => i.type === "song")
+              .length
+          }
+
         </span>
 
-        <span>{song}</span>
+        <span>{item.title}</span>
 
       </div>
 
-    ))
+    )}
 
-  ) : (
+    {item.type === "mc" && (
 
-    <p>セットリストはありません</p>
+      <div className="mcRow">
 
-  )}
+        ───── MC ─────
+
+      </div>
+
+    )}
+
+    {item.type === "encore" && (
+
+      <div className="encoreRow">
+
+        ──── ENCORE ────
+
+      </div>
+
+    )}
+
+  </div>
+
+))}
 
 </div>
 

@@ -1,0 +1,77 @@
+.addLiveDetailContainer{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:24px;
+
+}
+
+.addLiveDetailContainer textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.ratingArea {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.setlistArea{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:24px;
+}
+
+.songRow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.songNumber{
+    width:32px;
+    font-weight:bold;
+    color:#7c4dff;
+}
+
+.songRow input{
+    flex:1;
+    padding:10px 14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.addSongButton{
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#8b5cf6;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.addSongButton:hover{
+    background:#7c3aed;
+}
+
+.deleteSongButton{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}

@@ -49,71 +49,22 @@ const AddLiveBasic = ({
   const [seat, setSeat] =
     useState("");
 
-    const handleSave = () => {
+    const handleNext = () => {
 
-  const updatedArtists = artists.map(
-    (item) => {
-
-      if (
-        item.name.toLowerCase() !== artistId
-      ) {
-        return item;
-      }
-
-      return {
-
-        ...item,
-
-        liveCount:
-          item.liveCount + 1,
-
-        lastLiveDate: date,
-
-        lives: [
-
-          ...item.lives,
-
-          {
-
-            title,
-
-            liveType,
-
-            date,
-
-            venue,
-
-            openTime,
-
-            startTime,
-
-            seat,
-
-            rating: 0,
-
-            memo: "",
-
-            setlist: [],
-
-            photos: [],
-
-          },
-
-        ],
-
-      };
-
+  navigate(
+    `/artist/${artistId}/add-live/detail`,
+    {
+      state: {
+        title,
+        liveType,
+        date,
+        venue,
+        openTime,
+        startTime,
+        seat,
+      },
     }
   );
-
-  setArtists(updatedArtists);
-
-const newLiveIndex =
-  artist?.lives.length ?? 0;
-
-navigate(
-  `/live/${artistId}/${newLiveIndex}`
-);
 
 };
 
@@ -203,9 +154,9 @@ navigate(
 
 <button
   className="saveButton"
-  onClick={handleSave}
+  onClick={handleNext}
 >
-  ライブを登録
+  次へ
 </button>
 
     </div>
