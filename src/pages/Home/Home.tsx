@@ -1,15 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import FloatingButton from "../../components/FloatingButton/FloatingButton";
-
-import yoasobi from "../../assets/images/yoasobi.jpg";
-import vaundy from "../../assets/images/vaundy.jpg";
-import yorushika from "../../assets/images/yorushika.jpg";
-import clanqueen from "../../assets/images/clanqueen.jpg";
-
 import "./Home.css";
 
 type HomeProps = {
@@ -17,64 +11,51 @@ type HomeProps = {
   setArtists: React.Dispatch<React.SetStateAction<any[]>>;
 };
 
-const Home = ({
-  artists,
-  setArtists,
-}: HomeProps) => {
+const Home = ({ artists }: HomeProps) => {
+  const [searchText, setSearchText] = useState("");
 
-  const [searchText, setSearchText] =
-  useState("");
-
-  const filteredArtists = artists.filter(
-  (artist) =>
-    artist.name
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
-);
+  const filteredArtists = useMemo(
+    () =>
+      artists.filter((artist) =>
+        artist.name.toLowerCase().includes(searchText.toLowerCase()),
+      ),
+    [artists, searchText],
+  );
 
   return (
-    <div className="container">
+    <main className="home">
       <Header />
 
-      <SearchBar
-  value={searchText}
-  onChange={setSearchText}
-/>
+      <SearchBar value={searchText} onChange={setSearchText} />
 
-      <div className="titleArea">
-        <button
-  onClick={() =>
-    setArtists([
-      ...artists,
-      {
-        name: "テストアーティスト",
-        liveCount: 0,
-        lastLiveDate: "未参戦",
-        image: yoasobi,
-      },
-    ])
-  }
->
-  テスト追加
-</button>
-        <h2>My Artists</h2>
-        <span>{artists.length}組</span>
-      </div>
+      <section className="artistSection" aria-labelledby="artist-list-title">
+        <div className="artistSectionHeader">
+          <div className="artistTitle">
+            <h2 id="artist-list-title">My Artists</h2>
+            <span>{artists.length}組</span>
+          </div>
+          <span className="sortLabel">最終参戦日順</span>
+        </div>
 
-      {filteredArtists.map((artist) => (
-        <ArtistCard
-          key={artist.name}
-          name={artist.name}
-          liveCount={artist.liveCount}
-          lastLiveDate={artist.lastLiveDate}
-          image={artist.image}
-        />
-      ))}
+        <div className="artistList">
+          {filteredArtists.map((artist) => (
+            <ArtistCard
+              key={artist.name}
+              name={artist.name}
+              liveCount={artist.liveCount}
+              lastLiveDate={artist.lastLiveDate}
+              image={artist.image}
+            />
+          ))}
+          {filteredArtists.length === 0 && (
+            <p className="emptyState">該当するアーティストが見つかりません</p>
+          )}
+        </div>
+      </section>
 
       <FloatingButton />
-
       <BottomNavigation />
-    </div>
+    </main>
   );
 };
 

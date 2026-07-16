@@ -1,61 +1,73 @@
 .card {
-  background: #ffffff;
-
-  border-radius: 24px;
-
-  padding: 16px;
-
   display: flex;
   align-items: center;
-  gap: 16px;
-
-  margin-bottom: 12px;
-
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-
+  gap: 13px;
+  width: 100%;
+  min-height: 102px;
+  padding: 10px;
+  border: 1px solid rgba(110, 98, 171, 0.08);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 5px 17px rgba(58, 48, 102, 0.065);
+  color: inherit;
   cursor: pointer;
-
-  transition: all 0.2s ease;
+  text-align: left;
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(91, 71, 185, 0.13);
+}
 
-  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.12);
+.card:focus-visible {
+  outline: 3px solid rgba(128, 94, 255, 0.35);
+  outline-offset: 2px;
 }
 
 .image {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 20px;
-
+  width: 82px;
+  height: 82px;
+  flex: 0 0 auto;
+  border-radius: 12px;
   object-fit: cover;
-
-  flex-shrink: 0;
 }
 
 .content {
+  display: flex;
+  min-width: 0;
   flex: 1;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .name {
-  font-size: 1.8rem;
-  font-weight: 700;
-
-  margin-bottom: 8px;
-
-  color: #4f4f66;
+  overflow: hidden;
+  color: #17152b;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .info {
-  font-size: 0.95rem;
+  color: #77738d;
+  font-size: 11px;
+  line-height: 1;
+}
 
-  color: #8b8b9c;
-
-  margin-bottom: 6px;
+.info b {
+  color: #7355eb;
+  font-weight: 750;
 }
 
 .arrow {
-  color: #b5b5c3;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a56aff, #8057e9);
+  color: #fff;
 }

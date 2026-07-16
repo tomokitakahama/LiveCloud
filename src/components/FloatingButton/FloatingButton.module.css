@@ -1,32 +1,17 @@
 .button {
   position: fixed;
-
-  left: 50%;
-  transform: translateX(110px);
-
-  bottom: 100px;
-
-  width: 64px;
-  height: 64px;
-
-  border: none;
+  z-index: 11;
+  right: max(20px, calc(50% - 195px));
+  bottom: 78px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  place-items: center;
+  border: 0;
   border-radius: 50%;
-
-  background: linear-gradient(
-    135deg,
-    #8b5cf6,
-    #6c63ff
-  );
-
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  background: linear-gradient(135deg, #9668ff, #6e59e9);
+  box-shadow: 0 10px 22px rgba(112, 82, 238, 0.36);
+  color: #fff;
   cursor: pointer;
-
-  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.4);
-
-  z-index: 999;
 }

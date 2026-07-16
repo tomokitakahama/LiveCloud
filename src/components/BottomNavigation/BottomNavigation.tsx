@@ -1,48 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./BottomNavigation.module.css";
-import {
-  House,
-  ChartPie,
-  CirclePlus,
-  Settings
-} from "lucide-react";
+import { House, ChartNoAxesColumnIncreasing, CirclePlus, Settings } from "lucide-react";
 
 const BottomNavigation = () => {
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const items = [
+    { label: "ホーム", icon: House, path: "/" },
+    { label: "統計", icon: ChartNoAxesColumnIncreasing, path: "/stats" },
+    { label: "追加", icon: CirclePlus, path: "/add-artist" },
+    { label: "設定", icon: Settings, path: "" },
+  ];
 
   return (
-    <nav className={styles.navigation}>
-
-      <button
-        className={styles.navItem}
-        onClick={() => navigate("/")}
-      >
-        <House size={24} />
-        <span>ホーム</span>
-      </button>
-
-      <button
-        className={styles.navItem}
-        onClick={() => navigate("/stats")}
-      >
-        <ChartPie size={24} />
-        <span>統計</span>
-      </button>
-
-      <button
-        className={styles.navItem}
-        onClick={() => navigate("/add-artist")}
-      >
-        <CirclePlus size={24} />
-        <span>追加</span>
-      </button>
-
-      <button className={styles.navItem}>
-        <Settings size={24} />
-        <span>設定</span>
-      </button>
-
+    <nav className={styles.navigation} aria-label="メインナビゲーション">
+      {items.map(({ label, icon: Icon, path }) => (
+        <button
+          className={`${styles.navItem} ${location.pathname === path ? styles.active : ""}`}
+          key={label}
+          onClick={() => path && navigate(path)}
+          type="button"
+        >
+          <Icon size={22} strokeWidth={1.8} />
+          <span>{label}</span>
+        </button>
+      ))}
     </nav>
   );
 };

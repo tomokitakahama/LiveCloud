@@ -1,77 +1,14 @@
-.addLiveDetailContainer{
-
-    max-width:700px;
-
-    margin:auto;
-
-    padding:24px;
-
-}
-
-.addLiveDetailContainer textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.ratingArea {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.setlistArea{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-bottom:24px;
-}
-
-.songRow{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.songNumber{
-    width:32px;
-    font-weight:bold;
-    color:#7c4dff;
-}
-
-.songRow input{
-    flex:1;
-    padding:10px 14px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-}
-
-.addSongButton{
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    background:#8b5cf6;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.addSongButton:hover{
-    background:#7c3aed;
-}
-
-.deleteSongButton{
-    width:36px;
-    height:36px;
-    border:none;
-    border-radius:50%;
-    background:#ef4444;
-    color:white;
-    cursor:pointer;
-    font-size:18px;
-}
+.addLiveDetailPage { box-sizing: border-box; width: min(100%, 430px); min-height: 100svh; margin: 0 auto; padding: 17px 25px 38px; background: radial-gradient(circle at 88% 8%, rgba(225,213,255,.46), transparent 28%), linear-gradient(180deg,#fcfbff,#f7f6ff); color: #252137; }
+.addLiveDetailHeader { display: grid; grid-template-columns: 39px 1fr 39px; align-items: center; }
+.addLiveDetailHeader button { display: grid; width: 36px; height: 36px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #28243c; cursor: pointer; }
+.addLiveDetailHeader div { text-align: center; }.addLiveDetailHeader p { margin: 0 0 2px; color: #8a77cf; font-size: 9px; font-weight: 750; letter-spacing: .6px; }.addLiveDetailHeader h1 { margin: 0; color: #252137; font-size: 17px; font-weight: 800; }
+.detailProgress { height: 4px; margin: 20px 8px 26px; overflow: hidden; border-radius: 4px; background: #e8e5f1; }.detailProgress i { display: block; width: 100%; height: 100%; background: linear-gradient(90deg,#8a58f6,#6699f4); }
+.addLiveDetailForm { display: flex; flex-direction: column; gap: 25px; }.addLiveDetailForm section { padding-bottom: 21px; border-bottom: 1px solid #e9e7f0; }.addLiveDetailForm h2 { margin: 0 0 12px; color: #332e43; font-size: 14px; font-weight: 750; }.addLiveDetailForm h2 small { color: #9792a4; font-size: 10px; font-weight: 500; }
+.addStars { display: flex; align-items: center; justify-content: center; gap: 4px; }.addStars button { display: grid; padding: 0; place-items: center; border: 0; background: transparent; color: #ddd9e8; cursor: pointer; }.addStars button.selected { color: #8055f4; }.addStars span { margin-left: 6px; padding: 4px 8px; border-radius: 9px; background: #f2efff; color: #6f4ae5; font-size: 11px; font-weight: 700; }
+.setlistActions { display: flex; justify-content: center; gap: 7px; }.setlistActions button { display: flex; height: 33px; padding: 0 10px; align-items: center; gap: 3px; border: 1px solid #ded6f5; border-radius: 9px; background: #f8f5ff; color: #7954e6; font-size: 11px; font-weight: 700; cursor: pointer; }
+.addSetlistRows { display: grid; gap: 7px; margin-top: 11px; }.songInputRow { display: flex; align-items: center; gap: 8px; }.songInputRow b { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; background: #f0ebff; color: #7551e9; font-size: 10px; }.songInputRow input { height: 36px; min-width: 0; flex: 1; padding: 0 10px; border: 1px solid #e1dfea; border-radius: 9px; background: #fff; font: inherit; font-size: 12px; }.songInputRow button,.setlistMarker button { display: grid; width: 29px; height: 29px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: #fff0f2; color: #dc6077; cursor: pointer; }
+.setlistMarker { display: flex; align-items: center; gap: 8px; color: #8c83a5; font-size: 10px; font-weight: 750; }.setlistMarker::before,.setlistMarker::after { height: 1px; flex: 1; background: #e9e6ef; content: ""; }.setlistMarker span { padding: 0 4px; }
+.photoUpload { display: flex; height: 78px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; border: 1px dashed #cfc9dd; border-radius: 12px; background: #fbfaff; color: #7555de; font-size: 11px; font-weight: 700; cursor: pointer; }.photoUpload input { position: absolute; width: 1px; height: 1px; opacity: 0; }.selectedPhotos { margin: 7px 0 0; color: #77708d; font-size: 11px; }
+.addLiveDetailForm textarea { box-sizing: border-box; width: 100%; min-height: 97px; padding: 12px; border: 1px solid #e1dfea; border-radius: 12px; outline: 0; background: #fff; color: #373145; font: inherit; font-size: 12px; resize: vertical; }.addLiveDetailForm textarea:focus { border-color: #aa8cf5; box-shadow: 0 0 0 3px rgba(143,98,241,.12); }
+.addLiveSubmit { width: 100%; height: 51px; border: 0; border-radius: 25px; background: linear-gradient(100deg,#923ef2,#7756ee 52%,#5d9cf5); box-shadow: 0 10px 20px rgba(117,79,237,.22); color: #fff; font-size: 14px; font-weight: 750; cursor: pointer; }.invalidAddLive { display: grid; min-height: 100svh; place-content: center; gap: 14px; text-align: center; }.invalidAddLive button { padding: 10px 14px; border: 0; border-radius: 10px; background: #7652ed; color: #fff; cursor: pointer; }
+@media (min-width: 431px) { .addLiveDetailPage { box-shadow: 0 0 38px rgba(65,53,124,.1); } }

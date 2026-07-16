@@ -1,321 +1,104 @@
-import { useState } from "react";
 import "./LiveDetail.css";
-import { ArrowLeft } from "lucide-react";
-import {
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { ArrowLeft, CalendarDays, MapPin, MoreHorizontal, Pencil, Star } from "lucide-react";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+type SetlistItem = string | { type?: "song" | "mc" | "encore"; title?: string };
+type Live = {
+  title: string;
+  date: string;
+  venue: string;
+  liveType?: string;
+  openTime?: string;
+  startTime?: string;
+  seat?: string;
+  rating?: number;
+  memo?: string;
+  photos?: string[];
+  setlist?: SetlistItem[];
+};
 
 type LiveDetailProps = {
   artists: any[];
-
-  setArtists: React.Dispatch<
-    React.SetStateAction<any[]>
-  >;
+  setArtists: React.Dispatch<React.SetStateAction<any[]>>;
 };
 
-const LiveDetail = ({
-  artists,
-  setArtists,
-}: LiveDetailProps) => {
-
-    const { artistId, liveId } = useParams();
-
+const LiveDetail = ({ artists, setArtists }: LiveDetailProps) => {
+  const { artistId = "", liveId = "" } = useParams();
   const navigate = useNavigate();
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+  const artist = artists.find((item) => item.name.toLowerCase() === artistId.toLowerCase());
+  const live: Live | undefined = artist?.lives?.[Number(liveId)];
+  const photos = live?.photos ?? [];
+  const heroImage = photos[currentPhoto] || artist?.image;
 
-  const artist = artists.find(
-  (artist) =>
-    artist.name.toLowerCase() === artistId
-);
+  const updateRating = (rating: number) => {
+    setArtists((current) => current.map((item) => (
+      item.name.toLowerCase() !== artistId.toLowerCase()
+        ? item
+        : { ...item, lives: item.lives.map((liveItem: Live, index: number) => index === Number(liveId) ? { ...liveItem, rating } : liveItem) }
+    )));
+  };
 
-const live =
-  artist?.lives[Number(liveId)];
+  if (!live || !artist) {
+    return <main className="liveDetailPage liveNotFound"><p>ライブ記録が見つかりません</p><button onClick={() => navigate(-1)}>戻る</button></main>;
+  }
 
-  const [currentPhoto, setCurrentPhoto] =
-  useState(0);
-
-  const handleRating = (
-  rating: number
-) => {
-
-  const updatedArtists =
-    artists.map((item) => {
-
-      if (
-        item.name.toLowerCase() !== artistId
-      ) {
-        return item;
-      }
-
-      return {
-
-        ...item,
-
-        lives: item.lives.map(
-          (liveItem, index) => {
-
-            if (
-              index !== Number(liveId)
-            ) {
-              return liveItem;
-            }
-
-            return {
-              ...liveItem,
-              rating,
-            };
-          }
-        ),
-      };
-    });
-
-  setArtists(updatedArtists);
-};
+  const setlist = live.setlist ?? [];
+  const songNumber = (index: number) => setlist.slice(0, index + 1).filter((item) => typeof item === "string" || item.type === "song").length;
 
   return (
-
-    <div className="liveDetailContainer">
-
-      <button
-  className="backButton"
-  onClick={() => navigate(`/artist/${artistId}`)}
->
-        <ArrowLeft size={24} />
-      </button>
-
-      <div className="heroImage">
-
-  {live?.photos?.length ? (
-
-    <img
-      src={live?.photos?.[currentPhoto]}
-      alt={live.title}
-    />
-
-  ) : (
-
-    <div className="noImage">
-
-      No Image
-
-    </div>
-
-  )}
-
-</div>
-
-{live?.photos?.length! > 1 && (
-
-<div className="heroDots">
-
-  {live.photos.map((_: any, index: number) => (
-
-    <button
-
-      key={index}
-
-      className={
-        currentPhoto === index
-          ? "activeDot"
-          : "dot"
-      }
-
-      onClick={() =>
-        setCurrentPhoto(index)
-      }
-
-    />
-
-  ))}
-
-</div>
-
-)}
-
-<h1 className="liveTitle">
-  {live?.title}
-</h1>
-
-<div className="liveInfo">
-
-  <p>📅 {live?.date}</p>
-
-  <p>📍 {live?.venue}</p>
-
-</div>
-
-      <div className="liveCard">
-
-        <h2>{live?.title}</h2>
-
-        <div className="infoCard">
-
-  <div className="infoRow">
-    <span>ライブ種別</span>
-    <strong>{live?.liveType}</strong>
-  </div>
-
-  <div className="infoRow">
-    <span>開催日</span>
-    <strong>{live?.date}</strong>
-  </div>
-
-  <div className="infoRow">
-    <span>会場</span>
-    <strong>{live?.venue}</strong>
-  </div>
-
-  <div className="infoRow">
-    <span>開場</span>
-    <strong>{live?.openTime}</strong>
-  </div>
-
-  <div className="infoRow">
-    <span>開演</span>
-    <strong>{live?.startTime}</strong>
-  </div>
-
-  <div className="infoRow">
-    <span>座席</span>
-    <strong>{live?.seat || "未登録"}</strong>
-  </div>
-
-</div>
-
-<h3>評価</h3>
-
-<div className="ratingArea">
-
-  {Array.from({ length: 5 }).map((_, index) => (
-
-    <span key={index}>
-      {index < (live?.rating ?? 0)
-        ? "⭐"
-        : "☆"}
-    </span>
-
-  ))}
-
-</div>
-
-<h3>セットリスト</h3>
-
-<div className="setlistCard">
-
-  {live?.setlist?.length ? (
-
-    live.setlist.map((item: any, index: number) => (
-
-      <div key={index}>
-
-        {item.type === "song" && (
-
-          <div className="setlistItem">
-
-            <span className="songNumber">
-
-              {
-                live.setlist
-                  .slice(0, index + 1)
-                  .filter((i: any) => i.type === "song")
-                  .length
-              }
-
-            </span>
-
-            <span className="songTitle">
-              {item.title}
-            </span>
-
-          </div>
-
-        )}
-
-        {item.type === "mc" && (
-
-          <div className="mcDivider">
-
-            ───── MC ─────
-
-          </div>
-
-        )}
-
-        {item.type === "encore" && (
-
-          <div className="encoreDivider">
-
-            ──── ENCORE ────
-
-          </div>
-
-        )}
-
-      </div>
-
-    ))
-
-  ) : (
-
-    <p>セットリストはありません</p>
-
-  )}
-
-</div>
-
-<h3>感想</h3>
-
-<div className="memoCard">
-
-  {live?.memo || "感想はありません"}
-
-</div>
-
-<h3>ライブ写真</h3>
-
-<div className="photoCard">
-
-  <div className="photoArea">
-
-    
-
-    {live?.photos?.length ? (
-
-      live.photos.map((photo, index) => (
-
-        <img
-          key={index}
-          src={photo}
-          alt={`photo-${index}`}
-          className="livePhoto"
-        />
-
-      ))
-
-    ) : (
-
-      <p>写真はありません</p>
-
-    )}
-
-  </div>
-</div>
-
-<button
-  className="editButton"
-  onClick={() =>
-    navigate(
-      `/artist/${artistId}/live/${liveId}/edit`
-    )
-  }
->
-  編集する
-</button>
-
-      </div>
-
-    </div>
-
+    <main className="liveDetailPage">
+      <section className="liveHero" style={heroImage ? { backgroundImage: `linear-gradient(180deg, rgba(22, 16, 53, .15), rgba(22, 16, 53, .42)), url(${heroImage})` } : undefined}>
+        <div className="liveHeroActions">
+          <button type="button" onClick={() => navigate(`/artist/${artistId}`)} aria-label="アーティスト詳細へ戻る"><ArrowLeft size={24} /></button>
+          <button type="button" aria-label="その他の操作"><MoreHorizontal size={23} /></button>
+        </div>
+        {!heroImage && <span className="noHeroImage">No Image</span>}
+        {photos.length > 1 && <div className="heroPager">{photos.map((_, index) => <button key={index} className={index === currentPhoto ? "current" : ""} onClick={() => setCurrentPhoto(index)} aria-label={`${index + 1}枚目を表示`} />)}</div>}
+      </section>
+
+      <article className="liveDetailCard">
+        <h1>{live.title}</h1>
+        <div className="eventMeta"><p><CalendarDays size={15} /> {live.date}</p><p><MapPin size={15} /> {live.venue || "会場未登録"}</p></div>
+
+        <section className="detailSection ratingSection">
+          <h2>評価</h2>
+          <div className="stars" aria-label={`評価 ${live.rating ?? 0} / 5`}>{Array.from({ length: 5 }, (_, index) => <button type="button" key={index} className={index < (live.rating ?? 0) ? "filled" : ""} onClick={() => updateRating(index + 1)} aria-label={`${index + 1}点`}><Star size={25} fill="currentColor" /></button>)}<span>{live.rating ? live.rating.toFixed(1) : "未評価"}</span></div>
+        </section>
+
+        <section className="detailSection setlistSection">
+          <h2>セットリスト</h2>
+          {setlist.length ? <ol className="setlistList">{setlist.map((item, index) => {
+            if (typeof item !== "string" && item.type === "mc") return <li className="setlistDivider" key={index}><span>MC</span></li>;
+            if (typeof item !== "string" && item.type === "encore") return <li className="setlistDivider encore" key={index}><span>ENCORE</span></li>;
+            return <li key={index}><b>{songNumber(index)}</b><span>{typeof item === "string" ? item : item.title || "曲名未登録"}</span></li>;
+          })}</ol> : <p className="emptyDetail">セットリストはありません</p>}
+        </section>
+
+        <section className="detailSection liveInformationSection">
+          <h2>ライブ詳細情報</h2>
+          <dl className="liveInformationList">
+            <div><dt>ライブ種別</dt><dd>{live.liveType || "未登録"}</dd></div>
+            <div><dt>開場</dt><dd>{live.openTime || "未登録"}</dd></div>
+            <div><dt>開演</dt><dd>{live.startTime || "未登録"}</dd></div>
+            <div><dt>座席</dt><dd>{live.seat || "未登録"}</dd></div>
+          </dl>
+        </section>
+
+        <section className="detailSection">
+          <h2>写真</h2>
+          {photos.length ? <div className="livePhotoGrid">{photos.slice(0, 3).map((photo, index) => <button type="button" key={photo} onClick={() => setCurrentPhoto(index)}><img src={photo} alt={`${live.title}の写真 ${index + 1}`} />{index === 2 && photos.length > 3 && <span>+{photos.length - 3}</span>}</button>)}</div> : <p className="emptyDetail">写真はありません</p>}
+        </section>
+
+        <section className="detailSection memoSection">
+          <h2>感想メモ</h2>
+          <p>{live.memo || "感想メモはありません"}</p>
+        </section>
+      </article>
+
+      <button type="button" className="editLiveFab" onClick={() => navigate(`/artist/${artistId}/live/${liveId}/edit`)} aria-label="ライブ記録を編集"><Pencil size={22} /></button>
+    </main>
   );
 };
 

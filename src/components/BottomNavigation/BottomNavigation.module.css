@@ -1,49 +1,33 @@
 .navigation {
   position: fixed;
-
+  z-index: 10;
+  bottom: 0;
   left: 50%;
-  bottom: 16px;
-
-  transform: translateX(-50%);
-
-  width: calc(100% - 48px);
-  max-width: 360px;
-  height: 64px;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  border-radius: 28px;
-
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-
-  backdrop-filter: blur(12px);
+  box-sizing: border-box;
+  width: min(100%, 430px);
+  height: 64px;
+  padding: 8px 18px 5px;
+  justify-content: space-between;
+  border-top: 1px solid rgba(100, 89, 159, 0.1);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 -5px 20px rgba(60, 52, 101, 0.035);
+  transform: translateX(-50%);
+  backdrop-filter: blur(16px);
 }
 
 .navItem {
-  border: none;
-  background: transparent;
-
   display: flex;
+  min-width: 48px;
+  padding: 0;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-
+  gap: 2px;
+  border: 0;
+  background: transparent;
+  color: #77728e;
   cursor: pointer;
-
-  color: #7d7d7d;
-
-  transition: all 0.2s ease;
 }
 
-.navItem:hover {
-  color: #6c63ff;
-}
-
-.navItem span {
-  font-size: 12px;
-  font-weight: 500;
-}
+.navItem span { font-size: 10px; font-weight: 600; }
+.navItem.active { color: #7651f3; }

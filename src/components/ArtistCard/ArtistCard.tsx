@@ -9,47 +9,19 @@ type ArtistCardProps = {
   image: string;
 };
 
-const ArtistCard = ({
-  name,
-  liveCount,
-  lastLiveDate,
-  image,
-}: ArtistCardProps) => {
-
+const ArtistCard = ({ name, liveCount, lastLiveDate, image }: ArtistCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className={styles.card}
-      onClick={() =>
-        navigate(`/artist/${name.toLowerCase()}`)
-      }
-    >
-      <img
-        src={image}
-        alt={name}
-        className={styles.image}
-      />
-
-      <div className={styles.content}>
-        <div className={styles.name}>
-          {name}
-        </div>
-
-        <div className={styles.info}>
-          ライブ参戦 {liveCount}回
-        </div>
-
-        <div className={styles.info}>
-          最終参戦 {lastLiveDate}
-        </div>
-      </div>
-
-      <ChevronRight
-        size={24}
-        className={styles.arrow}
-      />
-    </div>
+    <button className={styles.card} onClick={() => navigate(`/artist/${name.toLowerCase()}`)}>
+      <img src={image} alt={`${name}のアーティスト写真`} className={styles.image} />
+      <span className={styles.content}>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.info}>ライブ参戦&nbsp; <b>{liveCount}回</b></span>
+        <span className={styles.info}>最終参戦&nbsp; {lastLiveDate}</span>
+      </span>
+      <span className={styles.arrow} aria-hidden="true"><ChevronRight size={18} strokeWidth={2.5} /></span>
+    </button>
   );
 };
 

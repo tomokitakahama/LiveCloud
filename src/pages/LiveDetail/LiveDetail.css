@@ -1,403 +1,44 @@
-.liveDetailContainer{
-
-    width:100%;
-
-    padding:24px;
-
-    box-sizing:border-box;
-
-    padding-bottom: 110px;
-
-}
-
-.liveCard{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  margin-top:20px;
-}
-
-.ratingArea{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin:20px 0 30px;
-
-    font-size:34px;
-
-}
-
-textarea{
-
-  width:100%;
-
-  height:160px;
-
-  margin-top:16px;
-
-  padding:16px;
-
-  border-radius:12px;
-
-  border:1px solid #ddd;
-
-  resize:none;
-
-  font-size:16px;
-
-}
-
-.saveMemoButton{
-
-  width:100%;
-
-  margin-top:20px;
-
-  height:48px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:#7C4DFF;
-
-  color:white;
-
-  font-size:16px;
-
-  cursor:pointer;
-
-}
-
-.liveCard input{
-
-  width:100%;
-
-  height:48px;
-
-  padding:12px;
-
-  margin-top:10px;
-
-  margin-bottom:20px;
-
-  border-radius:12px;
-
-  border:1px solid #ddd;
-
-  font-size:16px;
-
-}
-
-.editButton{
-
-    width:100%;
-
-    height:56px;
-
-    border:none;
-
-    border-radius:16px;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    background:linear-gradient(
-        90deg,
-        #8B5CF6,
-        #5B8CFF
-    );
-
-}
-
-.photoArea{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:12px;
-
-    margin-top:16px;
-
-}
-
-.livePhoto{
-
-    width:100%;
-
-    height:110px;
-
-    object-fit:cover;
-
-    border-radius:14px;
-
-}
-
-.livePhoto:hover{
-
-    transform:scale(1.05);
-
-}
-
-.setlistArea {
-
-  margin-top: 20px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-
-}
-
-.setlistItem {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 16px;
-
-  padding: 12px 16px;
-
-  background: #fff;
-
-  border-radius: 12px;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,.08);
-
-}
-
-.songNumber {
-
-  width: 28px;
-
-  font-weight: bold;
-
-  color: #7c4dff;
-
-  text-align: center;
-
-}
-
-.infoCard {
-
-  margin: 20px 0;
-
-  padding: 18px;
-
-  background: #fff;
-
-  border-radius: 16px;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
-
-}
-
-.infoRow {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding: 12px 0;
-
-  border-bottom: 1px solid #eee;
-
-}
-
-.infoRow:last-child {
-
-  border-bottom: none;
-
-}
-
-.infoRow span {
-
-  color: #777;
-
-}
-
-.infoRow strong {
-
-  color: #333;
-
-}
-
-.heroImage{
-
-    width:100%;
-
-    height:320px;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    margin-bottom:20px;
-
-    background:#f5f5f5;
-
-}
-
-.heroImage img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-}
-
-.noImage{
-
-    width:100%;
-    height:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#999;
-
-}
-
-.liveTitle{
-
-    font-size:34px;
-
-    font-weight:700;
-
-    margin-top:20px;
-
-    margin-bottom:8px;
-
-}
-
-.liveInfo{
-
-    display:flex;
-
-    gap:24px;
-
-    color:#666;
-
-    margin-bottom:20px;
-
-}
-
-.memoCard{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 24px rgba(120,90,255,.08);
-
-    line-height:1.8;
-
-    margin-bottom:24px;
-
-}
-
-.photoCard{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    margin-bottom:24px;
-
-    box-shadow:0 8px 24px rgba(120,90,255,.08);
-
-}
-
-.heroDots{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin:16px 0 28px;
-
-}
-
-.dot{
-
-    width:10px;
-
-    height:10px;
-
-    border-radius:50%;
-
-    border:none;
-
-    background:#ddd;
-
-    cursor:pointer;
-
-}
-
-.activeDot{
-
-    width:24px;
-
-    height:10px;
-
-    border-radius:999px;
-
-    border:none;
-
-    background:#7C5CFC;
-
-}
-
-.photoCard{
-
-    background:white;
-
-    border-radius:24px;
-
-    padding:20px;
-
-    margin-top:24px;
-
-    box-shadow:0 10px 30px rgba(124,92,252,.08);
-
-}
-
-.setlistCard{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    margin-bottom:24px;
-
-    box-shadow:0 8px 24px rgba(124,92,252,.08);
-
-}
+.liveDetailPage { box-sizing: border-box; width: min(100%, 430px); min-height: 100svh; margin: 0 auto; padding-bottom: 38px; background: #f8f7fe; color: #1d1a2d; text-align: left; }
+.liveHero { position: relative; height: 270px; background: #7366a4 center / cover no-repeat; }
+.liveHeroActions { display: flex; padding: 18px 19px; justify-content: space-between; }
+.liveHeroActions button { display: grid; width: 38px; height: 38px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: rgba(255,255,255,.87); color: #2a2542; cursor: pointer; }
+.noHeroImage { position: absolute; top: 52%; left: 50%; color: #fff; font-size: 13px; transform: translate(-50%, -50%); }
+.heroPager { position: absolute; right: 0; bottom: 18px; left: 0; display: flex; justify-content: center; gap: 6px; }
+.heroPager button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; }
+.heroPager button.current { width: 18px; border-radius: 6px; background: #fff; }
+
+.liveDetailCard { position: relative; min-height: 450px; margin-top: -20px; padding: 23px 20px 36px; border-radius: 23px 23px 0 0; background: #fff; }
+.liveDetailCard h1 { margin: 0; color: #171521; font-size: 21px; font-weight: 800; letter-spacing: -.45px; }
+.eventMeta { display: grid; gap: 8px; margin: 16px 0 21px; }
+.eventMeta p { display: flex; margin: 0; align-items: center; gap: 8px; color: #626079; font-size: 12px; font-weight: 550; }
+.eventMeta svg { color: #6d63a0; }
+.detailSection { padding: 17px 0; border-top: 1px solid #efedf4; }
+.detailSection h2 { margin: 0 0 12px; color: #28243a; font-size: 14px; font-weight: 750; }
+
+.stars { display: flex; align-items: center; gap: 3px; }
+.stars button { display: grid; padding: 0; place-items: center; border: 0; background: transparent; color: #ddd9e8; cursor: pointer; }
+.stars button.filled { color: #8055f4; }
+.stars span { margin-left: 7px; padding: 4px 8px; border-radius: 9px; background: #f2efff; color: #6f4ae5; font-size: 11px; font-weight: 700; }
+
+.setlistList { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.setlistList li { display: flex; min-height: 32px; align-items: center; gap: 10px; color: #413c54; font-size: 12px; }
+.setlistList li b { display: grid; width: 21px; height: 21px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #f0ebff; color: #7551e9; font-size: 10px; }
+.setlistList .setlistDivider { position: relative; display: grid; min-height: 25px; place-items: center; color: #958cae; font-size: 10px; font-weight: 750; }
+.setlistDivider::before { position: absolute; right: 0; left: 0; height: 1px; background: #eae6f1; content: ""; }
+.setlistDivider span { z-index: 1; padding: 0 9px; background: #fff; }
+.setlistDivider.encore { color: #7953e8; }
+.liveInformationList { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }
+.liveInformationList div { padding: 10px 11px; border-radius: 10px; background: #faf9fc; }
+.liveInformationList dt { margin-bottom: 4px; color: #9691a4; font-size: 10px; font-weight: 600; }
+.liveInformationList dd { margin: 0; overflow: hidden; color: #413c54; font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+
+.livePhotoGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.livePhotoGrid button { position: relative; height: 86px; padding: 0; overflow: hidden; border: 0; border-radius: 10px; background: #e7e5ed; cursor: pointer; }
+.livePhotoGrid img { width: 100%; height: 100%; object-fit: cover; }
+.livePhotoGrid button span { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(25,19,54,.5); color: #fff; font-size: 20px; font-weight: 700; }
+.emptyDetail { margin: 0; color: #9691a4; font-size: 12px; }
+.memoSection p { margin: 0; padding: 13px; border-radius: 11px; background: #faf9fc; color: #504b62; font-size: 12px; line-height: 1.7; white-space: pre-wrap; }
+.editLiveFab { position: fixed; z-index: 3; right: max(20px, calc(50% - 195px)); bottom: 24px; display: grid; width: 54px; height: 54px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: linear-gradient(135deg, #9669ff, #7058ea); box-shadow: 0 9px 20px rgba(103,73,232,.34); color: #fff; cursor: pointer; }
+.liveNotFound { display: grid; min-height: 100svh; place-content: center; gap: 15px; text-align: center; }
+.liveNotFound button { padding: 9px 14px; border: 0; border-radius: 10px; background: #7753ea; color: #fff; cursor: pointer; }
+@media (min-width: 431px) { .liveDetailPage { box-shadow: 0 0 38px rgba(65,53,124,.1); } }

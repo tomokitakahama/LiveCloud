@@ -6,24 +6,17 @@ type SearchBarProps = {
   onChange: (value: string) => void;
 };
 
-const SearchBar = ({
-  value,
-  onChange,
-}: SearchBarProps) => {
-  return (
-    <div className={styles.searchBar}>
-      <Search size={20} />
-
-      <input
-        type="text"
-        placeholder="アーティストを検索"
-        value={value}
-        onChange={(e) =>
-          onChange(e.target.value)
-        }
-      />
-    </div>
-  );
-};
+const SearchBar = ({ value, onChange }: SearchBarProps) => (
+  <label className={styles.searchBar}>
+    <Search size={19} strokeWidth={2} />
+    <input
+      type="search"
+      placeholder="アーティストを検索"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      aria-label="アーティストを検索"
+    />
+  </label>
+);
 
 export default SearchBar;
