@@ -25,21 +25,30 @@ const Stats = ({
   const totalArtists =
     artists.length;
 
-  const totalLives =
-    artists.reduce(
-      (sum, artist) =>
-        sum + artist.liveCount,
-      0
-    );
+  const totalLives = artists.reduce(
+
+  (sum, artist) =>
+
+    sum + (artist.lives?.length ?? 0),
+
+  0
+
+);
 
   const topArtist =
-    artists.reduce((prev, current) => {
+  artists.length > 0
+    ? artists.reduce((prev, current) =>
 
-      return prev.liveCount >
-        current.liveCount
-        ? prev
-        : current;
-    });
+        (prev.lives?.length ?? 0) >
+        (current.lives?.length ?? 0)
+
+          ? prev
+
+          : current
+
+      )
+
+    : null;
 
     const currentYear =
   new Date().getFullYear();
@@ -47,13 +56,12 @@ const Stats = ({
 const thisYearLives = artists.reduce(
   (sum, artist) => {
 
-    const count =
-      artist.lives.filter((live: any) =>
+    const lives = artist.lives ?? [];
 
-        new Date(live.date).getFullYear() ===
-        currentYear
-
-      ).length;
+    const count = lives.filter(
+      (live: any) =>
+        new Date(live.date).getFullYear() === currentYear
+    ).length;
 
     return sum + count;
 
@@ -68,7 +76,7 @@ const averageLives =
 
     const pieData = artists.map((artist) => ({
   name: artist.name,
-  value: artist.liveCount,
+  value: artist.lives?.length ?? 0,
 }));
 
 const COLORS = [
@@ -80,22 +88,79 @@ const COLORS = [
   "#CBD5E1",
 ];
 
-const yearlyData = [
-  { year: "2022", count: 3 },
-  { year: "2023", count: 5 },
-  { year: "2024", count: 7 },
-  { year: "2025", count: 7 },
-  { year: "2026", count: totalLives },
-];
+const yearlyMap: Record<string, number> = {};
 
-const monthlyData = [
-  { month: "1月", count: 0 },
-  { month: "2月", count: 1 },
-  { month: "3月", count: 1 },
-  { month: "4月", count: 2 },
-  { month: "5月", count: 3 },
-  { month: "6月", count: 1 },
-];
+artists.forEach((artist) => {
+
+  (artist.lives ?? []).forEach((live: any) => {
+
+    if (!live.date) return;
+
+    const year = String(
+      new Date(live.date).getFullYear()
+    );
+
+    yearlyMap[year] =
+      (yearlyMap[year] ?? 0) + 1;
+
+  });
+
+});
+
+const yearlyData = Object.keys(yearlyMap)
+  .sort()
+  .map((year) => ({
+    year,
+    count: yearlyMap[year],
+  }));
+
+const monthlyMap: Record<number, number> = {};
+
+for (let i = 1; i <= 12; i++) {
+  monthlyMap[i] = 0;
+}
+
+artists.forEach((artist) => {
+
+  (artist.lives ?? []).forEach((live: any) => {
+
+    if (!live.date) return;
+
+    const date = new Date(live.date);
+
+    if (
+      date.getFullYear() === currentYear
+    ) {
+
+      monthlyMap[
+        date.getMonth() + 1
+      ]++;
+
+    }
+
+  });
+
+});
+
+const monthlyData = Array.from(
+  { length: 12 },
+  (_, index) => ({
+
+    month: `${index + 1}月`,
+
+    count:
+      monthlyMap[index + 1],
+
+  })
+);
+
+const artistRanking = [...artists]
+  .sort(
+    (a, b) =>
+      (b.lives?.length ?? 0) -
+      (a.lives?.length ?? 0)
+  )
+  .slice(0, 5);
 
   return (
     <div className="statsContainer">
@@ -130,7 +195,9 @@ const monthlyData = [
 
     <p>{topArtist?.name}</p>
 
-    <span>{topArtist?.liveCount}回</span>
+    <span>
+  {topArtist?.lives?.length ?? 0}回
+</span>
 
   </div>
 
@@ -246,6 +313,47 @@ const monthlyData = [
     </LineChart>
 
   </ResponsiveContainer>
+
+</div>
+
+<div className="chartCard">
+
+  <h2>アーティストランキング</h2>
+
+  <div className="rankingArea">
+
+    {artistRanking.map(
+      (artist, index) => (
+
+        <div
+          className="rankingRow"
+          key={artist.name}
+        >
+
+          <span className="rankNumber">
+
+            {index + 1}
+
+          </span>
+
+          <span className="rankName">
+
+            {artist.name}
+
+          </span>
+
+          <span className="rankCount">
+
+            {artist.lives?.length ?? 0}回
+
+          </span>
+
+        </div>
+
+      )
+    )}
+
+  </div>
 
 </div>
 

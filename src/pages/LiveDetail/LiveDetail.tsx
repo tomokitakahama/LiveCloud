@@ -31,6 +31,9 @@ const LiveDetail = ({
 const live =
   artist?.lives[Number(liveId)];
 
+  const [currentPhoto, setCurrentPhoto] =
+  useState(0);
+
   const handleRating = (
   rating: number
 ) => {
@@ -74,13 +77,72 @@ const live =
     <div className="liveDetailContainer">
 
       <button
-        className="backButton"
-        onClick={() => navigate(-1)}
-      >
+  className="backButton"
+  onClick={() => navigate(`/artist/${artistId}`)}
+>
         <ArrowLeft size={24} />
       </button>
 
-      <h1>ライブ詳細</h1>
+      <div className="heroImage">
+
+  {live?.photos?.length ? (
+
+    <img
+      src={live?.photos?.[currentPhoto]}
+      alt={live.title}
+    />
+
+  ) : (
+
+    <div className="noImage">
+
+      No Image
+
+    </div>
+
+  )}
+
+</div>
+
+{live?.photos?.length! > 1 && (
+
+<div className="heroDots">
+
+  {live.photos.map((_: any, index: number) => (
+
+    <button
+
+      key={index}
+
+      className={
+        currentPhoto === index
+          ? "activeDot"
+          : "dot"
+      }
+
+      onClick={() =>
+        setCurrentPhoto(index)
+      }
+
+    />
+
+  ))}
+
+</div>
+
+)}
+
+<h1 className="liveTitle">
+  {live?.title}
+</h1>
+
+<div className="liveInfo">
+
+  <p>📅 {live?.date}</p>
+
+  <p>📍 {live?.venue}</p>
+
+</div>
 
       <div className="liveCard">
 
@@ -120,6 +182,8 @@ const live =
 
 </div>
 
+<h3>評価</h3>
+
 <div className="ratingArea">
 
   {Array.from({ length: 5 }).map((_, index) => (
@@ -134,94 +198,107 @@ const live =
 
 </div>
 
-<p>{live?.date}</p>
-
-<p>{live?.venue}</p>
-
-<h3>感想</h3>
-
-<p>
-  {live?.memo || "感想はありません"}
-</p>
-
-<h3>ライブ写真</h3>
-
 <h3>セットリスト</h3>
 
-<div className="setlistArea">
+<div className="setlistCard">
 
-  {live?.setlist?.map((item: any, index: number) => (
+  {live?.setlist?.length ? (
 
-  <div key={index}>
+    live.setlist.map((item: any, index: number) => (
 
-    {item.type === "song" && (
+      <div key={index}>
 
-      <div className="setlistItem">
+        {item.type === "song" && (
 
-        <span className="songNumber">
+          <div className="setlistItem">
 
-          {
-            live.setlist
-              .slice(0, index + 1)
-              .filter((i: any) => i.type === "song")
-              .length
-          }
+            <span className="songNumber">
 
-        </span>
+              {
+                live.setlist
+                  .slice(0, index + 1)
+                  .filter((i: any) => i.type === "song")
+                  .length
+              }
 
-        <span>{item.title}</span>
+            </span>
+
+            <span className="songTitle">
+              {item.title}
+            </span>
+
+          </div>
+
+        )}
+
+        {item.type === "mc" && (
+
+          <div className="mcDivider">
+
+            ───── MC ─────
+
+          </div>
+
+        )}
+
+        {item.type === "encore" && (
+
+          <div className="encoreDivider">
+
+            ──── ENCORE ────
+
+          </div>
+
+        )}
 
       </div>
-
-    )}
-
-    {item.type === "mc" && (
-
-      <div className="mcRow">
-
-        ───── MC ─────
-
-      </div>
-
-    )}
-
-    {item.type === "encore" && (
-
-      <div className="encoreRow">
-
-        ──── ENCORE ────
-
-      </div>
-
-    )}
-
-  </div>
-
-))}
-
-</div>
-
-<div className="photoArea">
-
-  {live?.photos?.length ? (
-
-    live.photos.map((photo, index) => (
-
-      <img
-        key={index}
-        src={photo}
-        alt={`photo-${index}`}
-        className="livePhoto"
-      />
 
     ))
 
   ) : (
 
-    <p>写真はありません</p>
+    <p>セットリストはありません</p>
 
   )}
 
+</div>
+
+<h3>感想</h3>
+
+<div className="memoCard">
+
+  {live?.memo || "感想はありません"}
+
+</div>
+
+<h3>ライブ写真</h3>
+
+<div className="photoCard">
+
+  <div className="photoArea">
+
+    
+
+    {live?.photos?.length ? (
+
+      live.photos.map((photo, index) => (
+
+        <img
+          key={index}
+          src={photo}
+          alt={`photo-${index}`}
+          className="livePhoto"
+        />
+
+      ))
+
+    ) : (
+
+      <p>写真はありません</p>
+
+    )}
+
+  </div>
 </div>
 
 <button

@@ -51,9 +51,15 @@ const EditLive = ({
     const [photos, setPhotos] =
   useState<File[]>([]);
 
-  const [setlist, setSetlist] = useState<string[]>(
-  live?.setlist || []
-);
+  type SetlistItem = {
+  type: "song" | "mc" | "encore";
+  title?: string;
+};
+
+const [setlist, setSetlist] =
+  useState<SetlistItem[]>(
+    live?.setlist || []
+  );
 
 const handleSetlistChange = (
   index: number,
@@ -62,9 +68,9 @@ const handleSetlistChange = (
 
   const updated = [...setlist];
 
-  updated[index] = value;
+updated[index].title = value;
 
-  setSetlist(updated);
+setSetlist(updated);
 
 };
 
@@ -72,7 +78,32 @@ const handleAddSong = () => {
 
   setSetlist([
     ...setlist,
-    "",
+    {
+      type: "song",
+      title: "",
+    },
+  ]);
+
+};
+
+const handleAddMC = () => {
+
+  setSetlist([
+    ...setlist,
+    {
+      type: "mc",
+    },
+  ]);
+
+};
+
+const handleAddEncore = () => {
+
+  setSetlist([
+    ...setlist,
+    {
+      type: "encore",
+    },
   ]);
 
 };
@@ -81,12 +112,11 @@ const handleDeleteSong = (
   index: number
 ) => {
 
-  const updated =
+  setSetlist(
     setlist.filter(
       (_, i) => i !== index
-    );
-
-  setSetlist(updated);
+    )
+  );
 
 };
 
@@ -171,8 +201,9 @@ const photoData = await Promise.all(
   alert("保存しました！");
 
   navigate(
-    `/live/${artistId}/${liveId}`
-  );
+  `/live/${artistId}/${liveId}`,
+  { replace: true }
+);
 
 };
 
@@ -245,56 +276,113 @@ const photoData = await Promise.all(
 
       </div>
 
-      <h3>セットリスト</h3>
+     <h3>セットリスト</h3>
+
+<div className="setlistButtons">
+
+  <button onClick={handleAddSong}>
+    ＋ 曲追加
+  </button>
+
+  <button onClick={handleAddMC}>
+    MC
+  </button>
+
+  <button onClick={handleAddEncore}>
+    EN
+  </button>
+
+</div>
 
 <div className="setlistArea">
 
-  {setlist.map((song, index) => (
+  {setlist.map((item, index) => (
 
-    <div
-      className="songRow"
-      key={index}
-    >
+    <div key={index}>
 
-      <span className="songNumber">
-        {index + 1}
-      </span>
+      {item.type === "song" && (
 
-      <input
-        type="text"
-        placeholder="曲名"
-        value={song}
-        onChange={(e) =>
-          handleSetlistChange(
-            index,
-            e.target.value
-          )
-        }
-      />
+        <div className="songRow">
 
-      <button
-        className="deleteSongButton"
-        onClick={() =>
-          handleDeleteSong(index)
-        }
-      >
-        ×
-      </button>
+          <span className="songNumber">
+
+            {
+              setlist
+                .slice(0, index + 1)
+                .filter(i => i.type === "song")
+                .length
+            }
+
+          </span>
+
+          <input
+            type="text"
+            placeholder="曲名"
+            value={item.title ?? ""}
+            onChange={(e) =>
+              handleSetlistChange(
+                index,
+                e.target.value
+              )
+            }
+          />
+
+          <button
+            className="deleteSongButton"
+            onClick={() =>
+              handleDeleteSong(index)
+            }
+          >
+            ×
+          </button>
+
+        </div>
+
+      )}
+
+      {item.type === "mc" && (
+
+        <div className="mcRow">
+
+          <span>───── MC ─────</span>
+
+          <button
+            className="deleteSongButton"
+            onClick={() =>
+              handleDeleteSong(index)
+            }
+          >
+            ×
+          </button>
+
+        </div>
+
+      )}
+
+      {item.type === "encore" && (
+
+        <div className="encoreRow">
+
+          <span>──── ENCORE ────</span>
+
+          <button
+            className="deleteSongButton"
+            onClick={() =>
+              handleDeleteSong(index)
+            }
+          >
+            ×
+          </button>
+
+        </div>
+
+      )}
 
     </div>
 
   ))}
 
-  <button
-    className="addSongButton"
-    onClick={handleAddSong}
-  >
-    ＋ 曲を追加
-  </button>
-
 </div>
-
-      <h3>感想</h3>
 
       <textarea
         value={memo}

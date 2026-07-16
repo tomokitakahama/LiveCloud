@@ -179,7 +179,10 @@ const handleDeleteItem = (
 
   setArtists(updatedArtists);
 
-  navigate(`/artist/${artistId}`);
+  navigate(
+  `/artist/${artistId}`,
+  { replace: true }
+);
 
 };
 

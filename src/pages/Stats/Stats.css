@@ -75,3 +75,59 @@
   width: 100%;
   height: 250px;
 }
+
+.rankingArea{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.rankingRow{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:#faf7ff;
+
+}
+
+.rankNumber{
+
+    width:40px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#7C5CFC;
+
+}
+
+.rankName{
+
+    flex:1;
+
+    font-weight:600;
+
+    margin-left:12px;
+
+}
+
+.rankCount{
+
+    color:#666;
+
+    font-weight:bold;
+
+}
