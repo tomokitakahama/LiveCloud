@@ -1,8 +1,7 @@
 import type { Artist } from "./types/artist";
 import Stats from "./pages/Stats/Stats";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ArtistDetail from "./pages/ArtistDetail/ArtistDetail";
 import AddArtist from "./pages/AddArtist/AddArtist";
@@ -27,7 +26,7 @@ function App() {
   }, [artists]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="appContainer">
         <Routes>
           <Route
@@ -70,7 +69,7 @@ function App() {
           />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
