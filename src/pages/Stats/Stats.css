@@ -125,7 +125,9 @@
 }
 .chartCard h2 {
   margin: 0 4px 12px;
+  color: #28223d;
   font-size: 15px;
+  font-weight: 800;
   letter-spacing: -0.25px;
 }
 .shareContent {
@@ -227,4 +229,9 @@
   .statsContainer {
     box-shadow: 0 0 38px rgba(65, 53, 124, 0.1);
   }
+}
+
+/* The statistics title is intentionally omitted to keep the screen compact. */
+.statsHeader {
+  display: none;
 }

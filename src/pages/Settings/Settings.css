@@ -54,7 +54,9 @@
 }
 .settingsSectionTitle h2 {
   margin: 0 0 3px;
+  color: #242034;
   font-size: 21px;
+  font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.45px;
 }

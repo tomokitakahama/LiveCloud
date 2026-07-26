@@ -297,12 +297,6 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
           </div>
           <div className="settingsRow">
             <span>
-              <b>開発者</b>
-            </span>
-            <strong>高濱 誠晃</strong>
-          </div>
-          <div className="settingsRow">
-            <span>
               <b>最終更新日</b>
             </span>
             <strong>2026/07/26</strong>
