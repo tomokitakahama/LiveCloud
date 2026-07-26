@@ -1,30 +1,23 @@
 body {
   margin: 0;
-  padding: 0;
-
-  background: #f5f5f5;
-
+  background: #ececec;
   font-family: sans-serif;
 }
 
-#root {
-  display: flex;
-  justify-content: center;
-
-  min-height: 100vh;
+#root{
+  display:flex;
+  justify-content:center;
 }
 
-.container {
-  width: 100%;
-  max-width: 430px; /* iPhone Pro Max程度 */
+.appContainer{
 
-  min-height: 100vh;
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
 
-  background: #f8f8fc;
+  background:#F8F7FF;
 
-  padding: 16px;
+  position:relative;
 
-  box-sizing: border-box;
-
-  position: relative;
+  overflow:hidden;
 }

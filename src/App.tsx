@@ -10,6 +10,7 @@ import LiveDetail from "./pages/LiveDetail/LiveDetail";
 import EditLive from "./pages/EditLive/EditLive";
 import AddLiveBasic from "./pages/AddLiveBasic/AddLiveBasic";
 import AddLiveDetail from "./pages/AddLiveDetail/AddLiveDetail";
+import Settings from "./pages/Settings/Settings";
 
 import yoasobi from "./assets/images/yoasobi.jpg";
 import vaundy from "./assets/images/vaundy.jpg";
@@ -103,6 +104,7 @@ useEffect(() => {
   return (
     <BrowserRouter>
 
+     <div className="appContainer">
       <Routes>
 
         <Route
@@ -183,7 +185,20 @@ useEffect(() => {
     />
   }
 />
+
+<Route
+  path="/settings"
+  element={
+    <Settings
+      artists={artists}
+      setArtists={setArtists}
+    />
+  }
+/>
       </Routes>
+
+      </div>
+
 
     </BrowserRouter>
   );

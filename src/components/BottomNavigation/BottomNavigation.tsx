@@ -9,7 +9,7 @@ const BottomNavigation = () => {
     { label: "ホーム", icon: House, path: "/" },
     { label: "統計", icon: ChartNoAxesColumnIncreasing, path: "/stats" },
     { label: "追加", icon: CirclePlus, path: "/add-artist" },
-    { label: "設定", icon: Settings, path: "" },
+    { label: "設定", icon: Settings, path: "/settings" },
   ];
 
   return (

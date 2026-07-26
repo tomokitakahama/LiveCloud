@@ -1,0 +1,85 @@
+.settingsContainer{
+
+  max-width:430px;
+
+  margin:0 auto;
+
+  min-height:100vh;
+
+  padding:24px 20px 110px;
+
+  background:#F8F7FF;
+
+}
+
+.settingCard{
+
+  margin-top:24px;
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:20px;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+
+}
+
+.settingCard h2{
+
+  margin-bottom:20px;
+
+}
+
+.dataRow{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:14px 0;
+
+  border-bottom:1px solid #eee;
+
+}
+
+.dataRow:last-child{
+
+  border-bottom:none;
+
+}
+
+.dataButton{
+
+  width:100%;
+
+  margin-top:18px;
+
+  height:48px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#6F5CFF;
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+.dataButton:hover{
+
+  background:#5c4cf5;
+
+}
