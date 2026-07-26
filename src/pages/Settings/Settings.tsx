@@ -198,9 +198,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
             <ImageIcon />
           </span>
           <div>
-            <h2>
-              写真管理 <em>近日公開</em>
-            </h2>
+            <h2>写真管理</h2>
             <p>保存しているライブ写真の情報を確認できます</p>
           </div>
         </div>
@@ -228,7 +226,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
             <b>不要な写真を整理</b>
             <small>未使用の写真を削除して容量を確保</small>
           </span>
-          <em>近日公開</em>
+          <i className="comingSoonLabel">近日公開</i>
         </button>
       </section>
 
@@ -238,9 +236,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
             <Bell />
           </span>
           <div>
-            <h2>
-              通知設定 <em>近日公開</em>
-            </h2>
+            <h2>通知設定</h2>
             <p>ライブ予定などの通知を設定します</p>
           </div>
         </div>
@@ -251,7 +247,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
               <b>ライブ予定通知</b>
               <small>登録したライブの前日にお知らせ</small>
             </span>
-            <em>近日公開</em>
+            <i className="comingSoonLabel">近日公開</i>
           </div>
           <div className="settingsRow disabledRow">
             <Sparkles />
@@ -259,7 +255,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
               <b>新着ライブ・更新通知</b>
               <small>アーティストの新しいライブ情報をお知らせ</small>
             </span>
-            <em>近日公開</em>
+            <i className="comingSoonLabel">近日公開</i>
           </div>
           <div className="settingsRow disabledRow">
             <CheckSquare />
@@ -267,7 +263,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
               <b>通知のタイミング</b>
               <small>通知を受け取る時間を設定</small>
             </span>
-            <em>近日公開</em>
+            <i className="comingSoonLabel">近日公開</i>
           </div>
         </div>
       </section>
