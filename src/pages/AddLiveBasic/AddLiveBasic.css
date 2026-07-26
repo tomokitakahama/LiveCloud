@@ -1,6 +1,133 @@
-.addLivePage { box-sizing: border-box; width: min(100%, 430px); min-height: 100svh; margin: 0 auto; padding: 17px 25px 38px; background: radial-gradient(circle at 88% 8%, rgba(225,213,255,.46), transparent 28%), linear-gradient(180deg,#fcfbff,#f7f6ff); color: #252137; }
-.addLiveHeader { display: grid; grid-template-columns: 39px 1fr 39px; align-items: center; }
-.addLiveHeader button { display: grid; width: 36px; height: 36px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #28243c; cursor: pointer; }
-.addLiveHeader div { text-align: center; }.addLiveHeader p { margin: 0 0 2px; color: #8a77cf; font-size: 9px; font-weight: 750; letter-spacing: .6px; }.addLiveHeader h1 { margin: 0; color: #252137; font-size: 17px; font-weight: 800; }
-.addLiveProgress { height: 4px; margin: 20px 8px 26px; overflow: hidden; border-radius: 4px; background: #e8e5f1; }.addLiveProgress i { display: block; width: 50%; height: 100%; border-radius: inherit; background: linear-gradient(90deg,#8a58f6,#6699f4); }
-.addLiveForm { display: flex; flex-direction: column; gap: 19px; }.addLiveForm label { display: flex; flex-direction: column; gap: 8px; color: #363143; font-size: 13px; font-weight: 700; }.addLiveForm input,.addLiveForm select { box-sizing: border-box; width: 100%; height: 47px; padding: 0 14px; border: 1px solid #e1dfea; border-radius: 13px; outline: none; background: #fff; color: #353045; font: inherit; font-size: 13px; }.addLiveForm input::placeholder { color: #aaa6b8; }.addLiveForm input:focus,.addLiveForm select:focus { border-color: #aa8cf5; box-shadow: 0 0 0 3px rgba(143,98,241,.12); }.labelWithIcon { display: flex; align-items: center; gap: 5px; }.labelWithIcon svg { color: #8062e8; }.labelWithIcon small { color: #9691a3; font-size: 10px; font-weight: 500; }.timeFields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }.livePrimaryButton { width: 100%; height: 51px; margin-top: 11px; border: 0; border-radius: 25px; background: linear-gradient(100deg,#923ef2,#7756ee 52%,#5d9cf5); box-shadow: 0 10px 20px rgba(117,79,237,.22); color: #fff; font-size: 14px; font-weight: 750; cursor: pointer; }@media(min-width:431px){.addLivePage{box-shadow:0 0 38px rgba(65,53,124,.1)}}
+.addLivePage {
+  box-sizing: border-box;
+  width: min(100%, 430px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 17px 25px 38px;
+  background:
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(225, 213, 255, 0.46),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #fcfbff, #f7f6ff);
+  color: #252137;
+}
+.addLiveHeader {
+  display: grid;
+  grid-template-columns: 39px 1fr 39px;
+  align-items: center;
+}
+.addLiveHeader button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #28243c;
+  cursor: pointer;
+}
+.addLiveHeader div {
+  text-align: center;
+}
+.addLiveHeader p {
+  margin: 0 0 2px;
+  color: #8a77cf;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.6px;
+}
+.addLiveHeader h1 {
+  margin: 0;
+  color: #252137;
+  font-size: 17px;
+  font-weight: 800;
+}
+.addLiveProgress {
+  height: 4px;
+  margin: 20px 8px 26px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #e8e5f1;
+}
+.addLiveProgress i {
+  display: block;
+  width: 50%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8a58f6, #6699f4);
+}
+.addLiveForm {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.addLiveForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #363143;
+  font-size: 13px;
+  font-weight: 700;
+}
+.addLiveForm input,
+.addLiveForm select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+  border: 1px solid #e1dfea;
+  border-radius: 13px;
+  outline: none;
+  background: #fff;
+  color: #353045;
+  font: inherit;
+  font-size: 13px;
+}
+.addLiveForm input::placeholder {
+  color: #aaa6b8;
+}
+.addLiveForm input:focus,
+.addLiveForm select:focus {
+  border-color: #aa8cf5;
+  box-shadow: 0 0 0 3px rgba(143, 98, 241, 0.12);
+}
+.labelWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.labelWithIcon svg {
+  color: #8062e8;
+}
+.labelWithIcon small {
+  color: #9691a3;
+  font-size: 10px;
+  font-weight: 500;
+}
+.timeFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.livePrimaryButton {
+  width: 100%;
+  height: 51px;
+  margin-top: 11px;
+  border: 0;
+  border-radius: 25px;
+  background: linear-gradient(100deg, #923ef2, #7756ee 52%, #5d9cf5);
+  box-shadow: 0 10px 20px rgba(117, 79, 237, 0.22);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+@media (min-width: 431px) {
+  .addLivePage {
+    box-shadow: 0 0 38px rgba(65, 53, 124, 0.1);
+  }
+}

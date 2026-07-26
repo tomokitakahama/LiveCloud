@@ -29,5 +29,10 @@
   cursor: pointer;
 }
 
-.navItem span { font-size: 10px; font-weight: 600; }
-.navItem.active { color: #7651f3; }
+.navItem span {
+  font-size: 10px;
+  font-weight: 600;
+}
+.navItem.active {
+  color: #7651f3;
+}

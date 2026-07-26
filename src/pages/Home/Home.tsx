@@ -4,11 +4,12 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import FloatingButton from "../../components/FloatingButton/FloatingButton";
+import type { Artist } from "../../types/artist";
 import "./Home.css";
 
 type HomeProps = {
-  artists: any[];
-  setArtists: React.Dispatch<React.SetStateAction<any[]>>;
+  artists: Artist[];
+  setArtists: React.Dispatch<React.SetStateAction<Artist[]>>;
 };
 
 const Home = ({ artists }: HomeProps) => {

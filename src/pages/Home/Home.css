@@ -5,7 +5,11 @@
   margin: 0 auto;
   padding: 26px 20px 112px;
   background:
-    radial-gradient(circle at 90% 4%, rgba(228, 215, 255, 0.55), transparent 27%),
+    radial-gradient(
+      circle at 90% 4%,
+      rgba(228, 215, 255, 0.55),
+      transparent 27%
+    ),
     linear-gradient(180deg, #fbfaff 0%, #f7f6ff 46%, #ffffff 100%);
   color: #17152d;
   text-align: left;

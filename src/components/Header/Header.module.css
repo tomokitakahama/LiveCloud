@@ -7,12 +7,19 @@
 
 .logo {
   margin: 0;
-  color: #5e55f3;
-  font-family: "Allura", cursive;
-  font-size: 39px;
+  display: inline-block;
+  padding: 8px 0 3px 7px;
+  margin: -8px 0 -3px -7px;
+  background: linear-gradient(105deg, #3475f6 0%, #5368f6 44%, #a12cf2 100%);
+  background-clip: text;
+  color: transparent;
+  font-family: "Sacramento", cursive;
+  font-size: 46px;
   font-weight: 400;
-  letter-spacing: -1px;
-  line-height: 0.9;
+  letter-spacing: -1.4px;
+  line-height: 0.82;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .notificationButton {

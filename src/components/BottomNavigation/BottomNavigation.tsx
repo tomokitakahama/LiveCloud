@@ -1,6 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./BottomNavigation.module.css";
-import { House, ChartNoAxesColumnIncreasing, CirclePlus, Settings } from "lucide-react";
+import {
+  House,
+  ChartNoAxesColumnIncreasing,
+  CirclePlus,
+  Settings,
+} from "lucide-react";
 
 const BottomNavigation = () => {
   const navigate = useNavigate();

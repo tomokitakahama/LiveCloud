@@ -18,7 +18,6 @@ import yorushika from "./assets/images/yorushika.jpg";
 import clanqueen from "./assets/images/clanqueen.jpg";
 
 function App() {
-
   const initialArtists = [
     {
       name: "YOASOBI",
@@ -28,178 +27,115 @@ function App() {
 
       lives: [
         {
-  title: "YOASOBI DOME LIVE 2026",
-  date: "2026/05/01",
-  venue: "東京ドーム",
+          title: "YOASOBI DOME LIVE 2026",
+          date: "2026/05/01",
+          venue: "東京ドーム",
 
-  liveType: "ワンマン",
+          liveType: "ワンマン",
 
-  openTime: "18:00",
+          openTime: "18:00",
 
-  startTime: "19:00",
+          startTime: "19:00",
 
-  seat: "",
+          seat: "",
 
-  rating: 5,
+          rating: 5,
 
-  memo: "",
+          memo: "",
 
-  setlist: [],
+          setlist: [],
 
-  photos: [],
-},
+          photos: [],
+        },
         {
-  title: "YOASOBI ARENA TOUR 2025",
-  date: "2025/12/10",
-  venue: "有明アリーナ",
-  rating: 4,
-  photos: [],
-},
+          title: "YOASOBI ARENA TOUR 2025",
+          date: "2025/12/10",
+          venue: "有明アリーナ",
+          rating: 4,
+          photos: [],
+        },
       ],
     },
-{
-  name: "Vaundy",
-  liveCount: 5,
-  lastLiveDate: "2025/12/15",
-  image: vaundy,
+    {
+      name: "Vaundy",
+      liveCount: 5,
+      lastLiveDate: "2025/12/15",
+      image: vaundy,
 
-  lives: [],
-},
-  {
-  name: "ヨルシカ",
-  liveCount: 8,
-  lastLiveDate: "2025/11/20",
-  image: yorushika,
+      lives: [],
+    },
+    {
+      name: "ヨルシカ",
+      liveCount: 8,
+      lastLiveDate: "2025/11/20",
+      image: yorushika,
 
-  lives: [],
-},
-  {
-  name: "CLAN QUEEN",
-  liveCount: 3,
-  lastLiveDate: "2025/08/10",
-  image: clanqueen,
+      lives: [],
+    },
+    {
+      name: "CLAN QUEEN",
+      liveCount: 3,
+      lastLiveDate: "2025/08/10",
+      image: clanqueen,
 
-  lives: [],
-},
-];
+      lives: [],
+    },
+  ];
 
-const [artists, setArtists] =
-  useState<Artist[]>(() => {
+  const [artists, setArtists] = useState<Artist[]>(() => {
+    const savedArtists = localStorage.getItem("artists");
 
-    const savedArtists =
-      localStorage.getItem("artists");
+    return savedArtists ? JSON.parse(savedArtists) : initialArtists;
+  });
 
-    return savedArtists
-      ? JSON.parse(savedArtists)
-      : initialArtists;
-});
-
-useEffect(() => {
-  localStorage.setItem(
-    "artists",
-    JSON.stringify(artists)
-  );
-}, [artists]);
+  useEffect(() => {
+    localStorage.setItem("artists", JSON.stringify(artists));
+  }, [artists]);
 
   return (
     <BrowserRouter>
+      <div className="appContainer">
+        <Routes>
+          <Route
+            path="/"
+            element={<Home artists={artists} setArtists={setArtists} />}
+          />
 
-     <div className="appContainer">
-      <Routes>
+          <Route
+            path="/artist/:artistId"
+            element={<ArtistDetail artists={artists} setArtists={setArtists} />}
+          />
 
-        <Route
-          path="/"
-          element={
-            <Home
-              artists={artists}
-              setArtists={setArtists}
-            />
-          }
-        />
+          <Route
+            path="/add-artist"
+            element={<AddArtist artists={artists} setArtists={setArtists} />}
+          />
 
-       <Route
-  path="/artist/:artistId"
-  element={
-    <ArtistDetail
-      artists={artists}
-      setArtists={setArtists}
-    />
-  }
-/>
+          <Route path="/stats" element={<Stats artists={artists} />} />
 
-        <Route
-          path="/add-artist"
-          element={
-            <AddArtist
-              artists={artists}
-              setArtists={setArtists}
-            />
-          }
-        />
+          <Route
+            path="/live/:artistId/:liveId"
+            element={<LiveDetail artists={artists} setArtists={setArtists} />}
+          />
 
-        <Route
-  path="/stats"
-  element={
-    <Stats
-      artists={artists}
-    />
-  }
-/>
+          <Route
+            path="/artist/:artistId/live/:liveId/edit"
+            element={<EditLive artists={artists} setArtists={setArtists} />}
+          />
 
-<Route
-  path="/live/:artistId/:liveId"
-  element={
-    <LiveDetail
-  artists={artists}
-  setArtists={setArtists}
-/>
-  }
-/>
+          <Route path="/artist/:artistId/add-live" element={<AddLiveBasic />} />
 
-<Route
-  path="/artist/:artistId/live/:liveId/edit"
-  element={
-    <EditLive
-      artists={artists}
-      setArtists={setArtists}
-    />
-  }
-/>
+          <Route
+            path="/artist/:artistId/add-live/detail"
+            element={<AddLiveDetail setArtists={setArtists} />}
+          />
 
-<Route
-  path="/artist/:artistId/add-live"
-  element={
-    <AddLiveBasic
-      artists={artists}
-      setArtists={setArtists}
-    />
-  }
-/>
-
-<Route
-  path="/artist/:artistId/add-live/detail"
-  element={
-    <AddLiveDetail
-      artists={artists}
-      setArtists={setArtists}
-    />
-  }
-/>
-
-<Route
-  path="/settings"
-  element={
-    <Settings
-      artists={artists}
-      setArtists={setArtists}
-    />
-  }
-/>
-      </Routes>
-
+          <Route
+            path="/settings"
+            element={<Settings artists={artists} setArtists={setArtists} />}
+          />
+        </Routes>
       </div>
-
-
     </BrowserRouter>
   );
 }
