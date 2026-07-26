@@ -11,6 +11,7 @@ type SettingsProps = {
 
 const Settings = ({
   artists,
+  setArtists,
 }: SettingsProps) => {
 
   const navigate = useNavigate();
@@ -74,6 +75,58 @@ const Settings = ({
 
 };
 
+const importJson = (
+  event: React.ChangeEvent<HTMLInputElement>
+) => {
+
+  const file = event.target.files?.[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+
+    try {
+
+      const json = JSON.parse(
+        e.target?.result as string
+      );
+
+      if (
+        window.confirm(
+          "現在のデータを上書きしますか？"
+        )
+      ) {
+
+        setArtists(json);
+
+        localStorage.setItem(
+          "artists",
+          JSON.stringify(json)
+        );
+
+        localStorage.setItem(
+          "lastBackup",
+          new Date().toLocaleString("ja-JP")
+        );
+
+        alert("復元しました");
+
+      }
+
+    } catch {
+
+      alert("JSONファイルではありません");
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+};
+
   return (
 
     <div className="settingsContainer">
@@ -123,6 +176,19 @@ const Settings = ({
   JSONを書き出す
 
 </button>
+
+<label className="dataButton">
+
+  JSONから復元
+
+  <input
+    type="file"
+    accept=".json"
+    hidden
+    onChange={importJson}
+  />
+
+</label>
 
       </div>
 
