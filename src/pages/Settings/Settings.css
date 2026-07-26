@@ -68,6 +68,9 @@
   letter-spacing: -0.45px;
 }
 .settingsSectionTitle p {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 64px;
   margin: 0;
   color: #625e70;
   font-size: 12px;

@@ -148,7 +148,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
           </span>
           <div>
             <h2>データ管理</h2>
-            <p>大切なライブデータをバックアップ・復元します</p>
+            <p>ライブデータをバックアップ・復元</p>
           </div>
         </div>
         <div className="settingsPanel">
@@ -199,7 +199,7 @@ const Settings = ({ artists, setArtists }: SettingsProps) => {
           </span>
           <div>
             <h2>写真管理</h2>
-            <p>保存しているライブ写真の情報を確認できます</p>
+            <p>保存済みのライブ写真を確認</p>
           </div>
         </div>
         <div className="photoMetrics">
