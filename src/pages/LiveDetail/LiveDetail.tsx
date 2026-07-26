@@ -6,6 +6,7 @@ import {
   MoreHorizontal,
   Pencil,
   Star,
+  Trash2,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,10 +21,12 @@ const LiveDetail = ({ artists, setArtists }: LiveDetailProps) => {
   const { artistId = "", liveId = "" } = useParams();
   const navigate = useNavigate();
   const [currentPhoto, setCurrentPhoto] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const liveIndex = Number(liveId);
   const artist = artists.find(
     (item) => item.name.toLowerCase() === artistId.toLowerCase(),
   );
-  const live: Live | undefined = artist?.lives?.[Number(liveId)];
+  const live: Live | undefined = artist?.lives?.[liveIndex];
   const photos = live?.photos ?? [];
   const heroImage = photos[currentPhoto] || artist?.image;
 
@@ -35,7 +38,7 @@ const LiveDetail = ({ artists, setArtists }: LiveDetailProps) => {
           : {
               ...item,
               lives: item.lives.map((liveItem: Live, index: number) =>
-                index === Number(liveId) ? { ...liveItem, rating } : liveItem,
+                index === liveIndex ? { ...liveItem, rating } : liveItem,
               ),
             },
       ),
@@ -58,6 +61,27 @@ const LiveDetail = ({ artists, setArtists }: LiveDetailProps) => {
       .filter((item) => typeof item === "string" || item.type === "song")
       .length;
 
+  /** Removes only the live currently being viewed after explicit confirmation. */
+  const deleteLive = () => {
+    if (!window.confirm(`「${live.title}」を削除しますか？`)) return;
+
+    setArtists((currentArtists) =>
+      currentArtists.map((currentArtist) =>
+        currentArtist.name !== artist.name
+          ? currentArtist
+          : {
+              ...currentArtist,
+              liveCount: Math.max(0, currentArtist.liveCount - 1),
+              lives: currentArtist.lives.filter(
+                (_, index) => index !== liveIndex,
+              ),
+            },
+      ),
+    );
+
+    navigate(`/artist/${artistId}`, { replace: true });
+  };
+
   return (
     <main className="liveDetailPage">
       <section
@@ -78,9 +102,26 @@ const LiveDetail = ({ artists, setArtists }: LiveDetailProps) => {
           >
             <ArrowLeft size={24} />
           </button>
-          <button type="button" aria-label="その他の操作">
-            <MoreHorizontal size={23} />
-          </button>
+          <div className="liveMoreMenu">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+              aria-label="その他の操作"
+              aria-expanded={isMenuOpen}
+            >
+              <MoreHorizontal size={23} />
+            </button>
+            {isMenuOpen && (
+              <button
+                type="button"
+                className="deleteLiveMenuItem"
+                onClick={deleteLive}
+              >
+                <Trash2 size={16} />
+                ライブを削除
+              </button>
+            )}
+          </div>
         </div>
         {!heroImage && <span className="noHeroImage">No Image</span>}
         {photos.length > 1 && (

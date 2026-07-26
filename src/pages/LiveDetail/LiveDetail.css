@@ -30,6 +30,33 @@
   color: #2a2542;
   cursor: pointer;
 }
+.liveMoreMenu {
+  position: relative;
+}
+.liveMoreMenu > button:first-child {
+  position: relative;
+  z-index: 2;
+}
+.deleteLiveMenuItem {
+  position: absolute;
+  z-index: 3;
+  top: 45px;
+  right: 0;
+  display: flex !important;
+  width: 148px !important;
+  height: 42px !important;
+  padding: 0 12px !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  border: 1px solid #f0dfe5 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 20px rgba(43, 30, 79, 0.16);
+  color: #d6546d !important;
+  font-size: 12px;
+  font-weight: 700;
+}
 .noHeroImage {
   position: absolute;
   top: 52%;
