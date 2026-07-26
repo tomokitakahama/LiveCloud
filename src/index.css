@@ -32,6 +32,22 @@
   }
 }
 
+html,
+body,
+#root {
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+/* iOS Safari automatically zooms focused form controls below 16px. */
+@media (max-width: 430px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
