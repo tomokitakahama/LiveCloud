@@ -18,7 +18,9 @@ const Home = ({ artists }: HomeProps) => {
   const filteredArtists = useMemo(
     () =>
       artists.filter((artist) =>
-        artist.name.toLowerCase().includes(searchText.toLowerCase()),
+        artist.name
+          .toLowerCase()
+          .includes(searchText.toLowerCase()),
       ),
     [artists, searchText],
   );
@@ -27,29 +29,47 @@ const Home = ({ artists }: HomeProps) => {
     <main className="home">
       <Header />
 
-      <SearchBar value={searchText} onChange={setSearchText} />
+      <SearchBar
+        value={searchText}
+        onChange={setSearchText}
+      />
 
-      <section className="artistSection" aria-labelledby="artist-list-title">
+      <section
+        className="artistSection"
+        aria-labelledby="artist-list-title"
+      >
         <div className="artistSectionHeader">
           <div className="artistTitle">
-            <h2 id="artist-list-title">My Artists</h2>
-            <span>{artists.length}組</span>
+            <h2 id="artist-list-title">
+              My Artists
+            </h2>
+
+            <span>
+              {artists.length}組
+            </span>
           </div>
-          <span className="sortLabel">最終参戦日順</span>
+
+          <span className="sortLabel">
+            最終参戦日順
+          </span>
         </div>
 
         <div className="artistList">
           {filteredArtists.map((artist) => (
             <ArtistCard
-              key={artist.name}
+              key={artist.id}
+              id={artist.id}
               name={artist.name}
               liveCount={artist.liveCount}
               lastLiveDate={artist.lastLiveDate}
               image={artist.image}
             />
           ))}
+
           {filteredArtists.length === 0 && (
-            <p className="emptyState">該当するアーティストが見つかりません</p>
+            <p className="emptyState">
+              該当するアーティストが見つかりません
+            </p>
           )}
         </div>
       </section>

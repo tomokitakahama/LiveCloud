@@ -6,6 +6,9 @@ export type SetlistItem =
     };
 
 export type Live = {
+  id: string;
+  artistId: string;
+
   title: string;
   date: string;
   venue: string;
@@ -20,6 +23,7 @@ export type Live = {
 };
 
 export type Artist = {
+  id: string;
   name: string;
   liveCount: number;
   lastLiveDate: string;
