@@ -7,8 +7,6 @@ body {
 #root {
   display: flex;
   justify-content: center;
-  height: 100svh;
-  overflow: hidden;
 }
 
 .appContainer {
@@ -16,12 +14,11 @@ body {
 
   width: 100%;
   max-width: 430px;
-  height: 100svh;
+  min-height: 100svh;
 
   background: var(--app-background);
 
   position: relative;
 
-  overflow-y: auto;
-  overscroll-behavior-y: none;
+  overflow: hidden;
 }

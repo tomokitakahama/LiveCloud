@@ -37,12 +37,7 @@ body,
 #root {
   touch-action: pan-y;
   overscroll-behavior-x: none;
-}
-
-html,
-body {
-  height: 100%;
-  overflow: hidden;
+  overscroll-behavior-y: none;
 }
 
 /* iOS Safari automatically zooms focused form controls below 16px. */
