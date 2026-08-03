@@ -7,16 +7,21 @@ body {
 #root {
   display: flex;
   justify-content: center;
+  height: 100svh;
+  overflow: hidden;
 }
 
 .appContainer {
+  --app-background: #f8f7ff;
+
   width: 100%;
   max-width: 430px;
-  min-height: 100vh;
+  height: 100svh;
 
-  background: #f8f7ff;
+  background: var(--app-background);
 
   position: relative;
 
-  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
 }

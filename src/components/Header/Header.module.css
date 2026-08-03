@@ -9,7 +9,7 @@
   padding: 26px 20px 12px;
   align-items: center;
   justify-content: space-between;
-  background: rgba(251, 250, 255, 0.94);
+  background: var(--app-background, #f8f7ff);
   box-shadow: 0 5px 20px rgba(60, 52, 101, 0.035);
   transform: translateX(-50%);
   backdrop-filter: blur(16px);

@@ -39,6 +39,12 @@ body,
   overscroll-behavior-x: none;
 }
 
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 /* iOS Safari automatically zooms focused form controls below 16px. */
 @media (max-width: 430px) {
   input,
