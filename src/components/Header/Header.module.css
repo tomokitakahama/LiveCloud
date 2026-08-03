@@ -1,8 +1,18 @@
 .header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 50%;
   display: flex;
+  box-sizing: border-box;
+  width: min(100%, 430px);
+  padding: 26px 20px 12px;
   align-items: center;
   justify-content: space-between;
-  margin: 7px 3px 24px;
+  background: rgba(251, 250, 255, 0.94);
+  box-shadow: 0 5px 20px rgba(60, 52, 101, 0.035);
+  transform: translateX(-50%);
+  backdrop-filter: blur(16px);
 }
 
 .logo {
