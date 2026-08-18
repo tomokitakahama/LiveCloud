@@ -153,8 +153,14 @@
   border: 1px solid #e1dfea;
   border-radius: 9px;
   background: #fff;
+  color: #38313e;
+  caret-color: #38313e;
+  color-scheme: light;
   font: inherit;
   font-size: 12px;
+}
+.songInputRow input::placeholder {
+  color: #aaa6b8;
 }
 .songInputRow button,
 .setlistMarker button {
