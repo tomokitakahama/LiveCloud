@@ -43,6 +43,7 @@
 }
 .editLiveHeader h1 {
   margin: 0;
+  color: #252137;
   font-size: 17px;
   font-weight: 800;
 }
@@ -60,19 +61,20 @@
 }
 .editSection h2 {
   margin: 0 0 13px;
+  color: #252137;
   font-size: 14px;
   font-weight: 800;
 }
 .editSection h2 small {
   margin-left: 3px;
-  color: #9792a4;
+  color: #625b73;
   font-size: 10px;
   font-weight: 500;
 }
 .editSection label {
   display: grid;
   gap: 6px;
-  color: #625b73;
+  color: #494157;
   font-size: 11px;
   font-weight: 700;
 }
@@ -104,9 +106,35 @@
 }
 .editTwoColumns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 9px;
   margin-top: 12px;
+}
+.editTwoColumns label,
+.editTwoColumns input {
+  min-width: 0;
+  min-inline-size: 0;
+}
+
+/* Safariのdate入力は固有の最小幅を持つため、狭い画面では会場欄と重なり得る。 */
+.editTwoColumns input[type="date"]::-webkit-date-and-time-value,
+.editTwoColumns input[type="date"]::-webkit-datetime-edit,
+.editTwoColumns input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  min-width: 0;
+  min-inline-size: 0;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .editTwoColumns input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .editTwoColumns {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 .labelWithIcon {
   display: flex;
