@@ -1,0 +1,44 @@
+.appUpdate {
+  position: fixed;
+  z-index: 1000;
+  right: 16px;
+  bottom: 82px;
+  left: 16px;
+  display: grid;
+  max-width: 420px;
+  margin: auto;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #35245f;
+  box-shadow: 0 10px 28px rgb(33 19 67 / 28%);
+  color: #fff;
+  gap: 10px;
+}
+
+.appUpdate p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.appUpdate div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.appUpdate button {
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: #5d32c8;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.appUpdate .appUpdateDismiss {
+  background: transparent;
+  color: #fff;
+}

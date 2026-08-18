@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { useRef, useState } from "react";
 
 import {
   Bell,
@@ -19,6 +20,11 @@ import {
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 
 import type { Artist } from "../../types/artist";
+import {
+  backupFileName,
+  createCompleteBackup,
+  restoreCompleteBackup,
+} from "../../lib/backup";
 
 import "./Settings.css";
 
@@ -84,7 +90,10 @@ const ActionRow = ({
 
 const Settings = ({
   artists,
+  setArtists,
 }: SettingsProps) => {
+  const restoreInputRef = useRef<HTMLInputElement>(null);
+  const [isProcessingBackup, setIsProcessingBackup] = useState(false);
   /*
    * --------------------------------
    * ライブ数
@@ -161,135 +170,50 @@ const Settings = ({
    * 写真URLはSigned URLなので
    * 永続的な画像バックアップではない。
    */
-  const exportJson = () => {
-    const backupData = {
-      exportedAt:
-        new Date().toISOString(),
+  const exportCompleteBackup = async () => {
+    if (isProcessingBackup) return;
+    setIsProcessingBackup(true);
 
-      version:
-        "1.0.0",
+    try {
+      const blob = await createCompleteBackup(artists);
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = backupFileName();
+      anchor.click();
+      URL.revokeObjectURL(url);
+      localStorage.setItem("lastBackup", formatBackupDate(new Date()));
+    } catch (error) {
+      console.error("完全バックアップの作成に失敗しました:", error);
+      alert("バックアップの作成に失敗しました。通信状態を確認して、もう一度お試しください。");
+    } finally {
+      setIsProcessingBackup(false);
+    }
+  };
 
-      artists:
-        artists.map(
-          (artist) => ({
-            id:
-              artist.id,
+  const restoreFromFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file || isProcessingBackup) return;
 
-            name:
-              artist.name,
-
-            liveCount:
-              artist.liveCount,
-
-            lastLiveDate:
-              artist.lastLiveDate,
-
-            lives:
-              artist.lives.map(
-                (live) => ({
-                  id:
-                    live.id,
-
-                  artistId:
-                    live.artistId,
-
-                  title:
-                    live.title,
-
-                  date:
-                    live.date,
-
-                  venue:
-                    live.venue,
-
-                  liveType:
-                    live.liveType,
-
-                  openTime:
-                    live.openTime,
-
-                  startTime:
-                    live.startTime,
-
-                  seat:
-                    live.seat,
-
-                  rating:
-                    live.rating,
-
-                  memo:
-                    live.memo,
-
-                  setlist:
-                    live.setlist,
-
-                  /*
-                   * Signed URLは
-                   * バックアップしない
-                   */
-                  photoCount:
-                    live.photos
-                      .length,
-                }),
-              ),
-          }),
-        ),
-    };
-
-    const blob =
-      new Blob(
-        [
-          JSON.stringify(
-            backupData,
-            null,
-            2,
-          ),
-        ],
-        {
-          type:
-            "application/json",
-        },
-      );
-
-    const url =
-      URL.createObjectURL(
-        blob,
-      );
-
-    const anchor =
-      document.createElement(
-        "a",
-      );
-
-    anchor.href =
-      url;
-
-    anchor.download =
-      `LiveCloud_${new Date()
-        .toLocaleDateString(
-          "ja-JP",
-        )
-        .replaceAll(
-          "/",
-          "-",
-        )}.json`;
-
-    anchor.click();
-
-    URL.revokeObjectURL(
-      url,
+    const accepted = window.confirm(
+      "この完全バックアップで現在のデータを置き換えます。現在のアーティスト・ライブ・写真は削除されます。続行しますか？",
     );
+    if (!accepted) return;
 
-    /*
-     * 最終バックアップ日時だけ
-     * LocalStorageへ保存
-     */
-    localStorage.setItem(
-      "lastBackup",
-      formatBackupDate(
-        new Date(),
-      ),
-    );
+    setIsProcessingBackup(true);
+    try {
+      await restoreCompleteBackup(file, true);
+      setArtists([]);
+      alert("バックアップを完全に復元しました。画面を更新します。");
+      window.location.reload();
+    } catch (error) {
+      console.error("完全復元に失敗しました:", error);
+      const message = error instanceof Error ? error.message : "復元中に予期しないエラーが発生しました。";
+      alert(`復元に失敗しました。${message}`);
+    } finally {
+      setIsProcessingBackup(false);
+    }
   };
 
   return (
@@ -324,41 +248,41 @@ const Settings = ({
         <div className="settingsPanel">
           <ActionRow
             icon={Upload}
-            title="JSONでバックアップ"
-            description="ライブ情報をJSONファイルに保存"
+            title={isProcessingBackup ? "処理中..." : "完全バックアップを作成"}
+            description="ライブ情報と写真をZIPファイルに保存"
             onClick={
-              exportJson
+              exportCompleteBackup
             }
           />
 
-          {/*
-           * Supabase対応の復元機能は
-           * 後で実装する。
-           *
-           * LocalStorageへの復元は
-           * 使用しない。
-           */}
           <button
-            className="settingsRow disabledRow"
+            className="settingsRow actionRow"
             type="button"
-            disabled
+            onClick={() => restoreInputRef.current?.click()}
+            disabled={isProcessingBackup}
           >
             <Database />
 
             <span>
               <b>
-                JSONから復元
+                完全バックアップから復元
               </b>
 
               <small>
-                Supabase対応の復元機能を準備中
+                ZIP内のデータと写真で現在の記録を置換
               </small>
             </span>
 
-            <i className="comingSoonLabel">
-              近日公開
-            </i>
+            <ChevronRight aria-hidden="true" className="chevron" />
           </button>
+
+          <input
+            ref={restoreInputRef}
+            className="backupFileInput"
+            type="file"
+            accept="application/zip,.zip"
+            onChange={restoreFromFile}
+          />
 
           <div className="settingsMetrics">
             <div>

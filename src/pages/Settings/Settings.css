@@ -126,6 +126,9 @@
 .actionRow:hover {
   background: #faf9ff;
 }
+.backupFileInput {
+  display: none;
+}
 .chevron {
   margin-left: auto;
   color: #8b869d !important;
