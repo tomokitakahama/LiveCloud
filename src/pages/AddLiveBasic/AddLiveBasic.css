@@ -68,6 +68,7 @@
 .addLiveForm label {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 8px;
   color: #363143;
   font-size: 13px;
@@ -77,6 +78,8 @@
 .addLiveForm select {
   box-sizing: border-box;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   height: 47px;
   padding: 0 14px;
   border: 1px solid #e1dfea;
@@ -110,7 +113,7 @@
 }
 .timeFields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 .livePrimaryButton {
